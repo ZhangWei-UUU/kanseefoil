@@ -30,10 +30,6 @@ class HeadNav extends Component{
             <Item key="logo">
               <a href="/">
                 <div className="logo">
-                  {themeStyle === "light"?
-                    <img src="/static/images/logo-blue.webp" alt="logo-blue"/>:
-                    <img src="/static/images/logo.webp"  alt="logo"/>
-                  }
                   <p style={themeStyle === "light"?
                     {color:"#1890ff"}:null
                   }>翰溪金箔官网</p>
@@ -47,7 +43,7 @@ class HeadNav extends Component{
                     <a >{loginUser}</a> 
                   </Link>
                   | 
-                  <a onClick={this.logout}> 退出</a>
+                  <a onClick={this.logout}>退出</a>
                 </div>
                 :
                 <Link href="/login">
