@@ -36,7 +36,7 @@ class HeadNav extends Component{
                   }
                   <p style={themeStyle === "light"?
                     {color:"#1890ff"}:null
-                  }>嘉竹文库</p>
+                  }>翰溪金箔官网</p>
                 </div>
               </a>
             </Item>
