@@ -1,0 +1,537 @@
+
+.first-component {
+    background: linear-gradient(135deg,#35aef8,#7681ff 76%,#7681ff 0);
+    height: 900px;
+    width: 100%;
+    color:#fff;  
+    font-weight: 350;
+    padding-top: 150px;
+    font-size: 18px;
+}
+
+.first-component-wrapper {
+    width: 80%;
+    padding:2rem; 
+    margin: auto;
+}
+.first-component h1 {
+    color:#fff; 
+    font-size: 3rem;
+    font-weight: 100;
+}
+.service-component {
+    background: #fff;
+    padding-top: 100px;
+    height: 800px;
+}
+
+.ant-menu-transparent {
+    background: none!important;
+    color: #fff!important;
+    position: absolute!important;
+    border:none!important;
+}
+
+.ant-menu-item:hover {
+    border-bottom:none!important;
+}
+
+.ant-menu-transparent .ant-menu-item:hover.ant-menu-item-active{
+    color:#e8e8e8!important;
+    border-bottom:none!important;
+}
+
+.ant-menu-transparent .ant-menu-item:hover a {
+    color:#e8e8e8!important;
+    border-bottom:none!important;
+}
+
+.ant-menu-horizontal > .ant-menu-item, .ant-menu-horizontal > .ant-menu-submenu{
+    border-bottom: none!important;
+}
+
+.logo {
+    font-size: 1.3rem;
+    width: 230px;
+    margin: 0 100px;
+}
+
+.logo p {
+    font-weight: 300;
+    float: left;
+    margin-bottom: 0;
+}
+.logo img{
+    margin-right: 20px;
+    width: 60px;
+    float: left;
+}
+
+.footer{
+    color: #fff;
+    min-height: 300px;
+    background: #000;
+    padding-top: 50px;
+}
+
+.footer-content {
+    width: 60%;
+    margin: auto;
+}
+
+.footer-content a{
+    color: #fff;
+}
+.footer-content strong {
+    font-size: 1.1rem
+}
+
+.ant-layout-content {
+    min-height: 50rem;
+}
+
+.ant-menu-transparent .ant-menu-item  a{
+    color:#fff!important
+}
+
+.home-card {
+    border:1px solid #e8e8e8;
+    height: 20rem;
+    width:92%;
+    margin:0 auto;
+    background: #35aef8;
+    color:#fff;
+    text-align: center;
+}
+
+.home-card:hover {
+    cursor: pointer;
+    box-shadow:0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.iot-component {
+    background-color:rgb(22, 22, 39);
+    min-height: 50rem;
+    position: relative;
+    color:#fff;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.iot-component h1 {
+    color:#fff
+}
+
+.iot-component p {
+   font-size: 2rem;
+   font-weight: 100;
+}
+
+.truck {
+    width: 500px;
+    position: absolute;
+    bottom: -12%;
+    right: 25%;
+}
+
+.ipad {
+    width: 500px;
+    position: absolute;
+    bottom: 0%;
+    left: 20%;
+}
+
+.tech-component {
+    background-color: #fff;
+    min-height: 50rem;
+}
+
+.wechat-component {
+    background: linear-gradient(135deg,#449597,#4ca498 76%,#4ca498 0);
+    height: 900px;
+    width: 100%;
+    color:#fff;  
+    font-weight: 100;
+    padding-top: 100px;
+}
+
+.wechat-component h1 {
+    font-size: 2rem;
+     color:#fff
+}
+
+.wechat-component p {
+    font-size: 1.5rem;
+}
+
+.web-component {
+    background: linear-gradient(135deg,#9bd0f1,#3d8bde 76%,#3d8bde 0);
+    height: 900px;
+    width: 100%;
+    color:#fff;  
+    font-weight: 100;
+    padding-top: 100px;
+}
+
+.web-component h1 {
+    font-size: 2rem;
+     color:#fff
+}
+
+.web-component p {
+    font-size: 1.5rem;
+}
+
+.web-dashboard {
+    width: 100%;
+    height: 500px;
+    box-shadow:0 8px 40px rgba(0, 0, 0, 0.15);
+    margin:20px;
+    background-color: #fff
+}
+
+.non-found {
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width:100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    background-color: #e8e8e8;
+    padding-top: 5rem;
+}
+
+.non-found h1 {
+    font-size: 6rem;
+    color: #4ca498;
+}
+
+.non-found h2 {
+    font-size: 2rem;
+}
+
+.login {
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width:100%;
+    height: 100%;
+    position: absolute;
+    background:linear-gradient(135deg,#35aef8,#7681ff 76%,#7681ff 0);
+}
+
+.login-form {
+    text-align: center;
+    position: relative;
+    margin:100px auto;
+    width: 500px;
+    height: 500px;
+    color:#fff;
+}
+
+.login-form h1 {
+    color:#fff;
+    font-weight: 200;
+}
+.login-icon {
+    width: 160px;
+    display: block;
+    margin:10px auto;
+}
+
+.login-form form {
+    margin:20px auto;
+    color:#484848;
+    width: 280px;
+    height: 36px;
+}
+
+.login-form button {
+    width: 280px;
+}
+
+.login-form a {
+   color:#fff;
+}
+
+.login-keep {
+    margin:30px 0
+}
+
+.first-component button {
+    outline: none;
+    margin:30px 10px;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    background: none;
+    color:#fff;
+    height: 40px;
+    cursor: pointer;
+    padding:5px 20px;
+}
+
+.house {
+    margin: 20px auto;
+    width: 1200px;
+    height: 700px;
+    overflow: hidden;
+    background: url("/static/images/house.jpg") no-repeat center center;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+}
+
+.first-component img {
+    width: 500px;
+    display: block;
+    float: right;
+}
+
+.artical-header {
+    background:linear-gradient(135deg,#35aef8,#7681ff 76%,#7681ff 0);
+    height: 16rem;
+    width:100%;
+    text-align: center;
+    color:#fff;
+}
+
+.svg-card {
+    width: 800px;
+    height: 800px;
+    margin:20px auto;
+    box-shadow:0 8px 40px rgba(0, 0, 0, 0.15);
+    background: #000;
+}
+
+.charts-frame {
+    width: 80%;
+    height: 700px;
+    margin:30px auto;
+}
+
+.echarts-card {
+    padding: 2rem;
+    width: 97%;
+    height: 700px;
+    margin:20px auto;
+    box-shadow:0 8px 40px rgba(0, 0, 0, 0.15);
+    background: #fff;
+}
+
+.echarts-txt {
+    width: 97%;
+    height: 700px;
+    margin:20px auto;
+    box-shadow:0 8px 40px rgba(0, 0, 0, 0.15);
+    background: #fff;
+}
+
+.pixel {
+    width: 280px;
+    margin-top: 200px;
+}
+
+.rn-txt {
+    text-align: center;
+    margin-top: 420px;
+}
+
+.wiki {
+    border:1px solid #ccc;
+    padding: 0 30px;
+    font-size: 15px;
+    margin:50px auto;
+    width: 75%;
+}
+
+.wiki pre {
+    padding: 10px;
+    background: #f6f8fa
+}
+
+.wiki h1{
+    margin-top: 100px;
+}
+.wiki h2 {
+    margin-top: 50px;
+}
+.wiki img {
+    display: block;
+    width: 60%;
+    margin:30px auto;   
+}
+
+.wiki li{
+    margin-bottom: 10px;
+    font-weight: bolder;
+}
+
+.wiki ol{
+    margin:30px 0;
+}
+
+.wiki ul{
+    margin:30px 0;
+}
+
+.wiki blockquote{
+    color: #469b73;
+    padding: 10px;
+    background: #eefcf5
+}
+
+.wiki code {
+    color: #469b73;
+}
+
+.wiki h3{
+    margin-top:50px;
+    margin-bottom: 20px;
+}
+
+.monitor i{
+    font-size: 2rem;
+    color: rgb(24, 144, 255);
+    opacity: 0.8;
+}
+
+.monitor h4 {
+    margin-top: 10px;
+    color: rgb(24, 144, 255);
+    opacity: 0.8;
+}
+
+.monitor {
+    text-align: center;
+    margin:1px;
+}
+
+.menu-main-title {
+    padding: 10px;
+    height: 50px;
+    font-size: 20px;
+    color:#fff;
+    background: #6b52ae;
+}
+
+.menu-main-children {
+    text-decoration: none;
+    padding: 2px 0;
+    background: rgb(236, 236, 236);
+    margin-bottom:0;
+}
+
+.menu-main-children li {
+    list-style-type:none;
+    padding: 0 10px;
+    margin:10px 0;
+}
+
+.menu-main-children li a {
+    color:#484848;
+}
+
+.doc-container {
+    min-height: 800px;
+    margin:20px auto;
+    width:80%;
+}
+
+.staticfile {
+    padding: 50px;
+}
+
+.channel-wrap {
+    padding: 10px;
+ 
+}
+
+.channel {
+    background: #fff;
+    height: 240px;
+    width:100%;
+    border:1px solid #e8e8e8;
+    border-radius: 15px;
+}
+
+.channel-body {
+    background: rgb(77, 77, 77);
+    height: 160px;
+    margin-bottom: 5px;
+}
+
+.channel-footer {
+    padding: 0 20px;
+}
+
+.channel-body img {
+    width:100%;
+    height: 100%;
+    border-radius: 15px 15px 0 0;
+}
+
+.app-details {
+    margin:10px auto;
+    width: 900px;
+    height: 10%;
+    position: relative;
+    overflow: scroll;
+}
+
+.app-details .icon {
+   width: 150px
+}
+
+.app-details .image {
+    width: 350px
+ }
+
+ .app-details .carousel-pics {
+     margin:100px auto;
+     width:700px
+ }
+
+ .app-details .carousel-pics .image {
+    width: 100%;
+ }
+
+ .app-details p {
+   color:rgb(121, 121, 121)
+ }
+
+ .application-drawer .ant-drawer-content-wrapper {
+     overflow: scroll;
+ }
+
+ .application-drawer.ant-drawer .ant-drawer-content {
+     height: auto;
+ }
+
+ .layers {
+     min-height: 600px;
+     width:800px;
+     margin:50px auto;
+ }
+
+ .layer {
+     border: 1px solid #000;
+     min-height: 120px;
+     margin-bottom: 1px;
+     padding: 10px;
+ }
+
+ .doc-container {
+     background: #fff;
+     padding: 3%;
+ }
+
+.message-bar {
+    width: 100%;
+    background: #fff;
+    padding: 20px;
+    margin:10px auto;
+}
