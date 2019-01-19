@@ -1,346 +1,4 @@
 {
-  "../../Style/course.css": [
-    {
-      "id": "./Style/course.css",
-      "name": "./Style/course.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "./index.css": [
-    {
-      "id": "./node_modules/antd/lib/alert/style/index.css",
-      "name": "./node_modules/antd/lib/alert/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/badge/style/index.css",
-      "name": "./node_modules/antd/lib/badge/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/button/style/index.css",
-      "name": "./node_modules/antd/lib/button/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/card/style/index.css",
-      "name": "./node_modules/antd/lib/card/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/checkbox/style/index.css",
-      "name": "./node_modules/antd/lib/checkbox/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/dropdown/style/index.css",
-      "name": "./node_modules/antd/lib/dropdown/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/form/style/index.css",
-      "name": "./node_modules/antd/lib/form/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/icon/style/index.css",
-      "name": "./node_modules/antd/lib/icon/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/input/style/index.css",
-      "name": "./node_modules/antd/lib/input/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/layout/style/index.css",
-      "name": "./node_modules/antd/lib/layout/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/menu/style/index.css",
-      "name": "./node_modules/antd/lib/menu/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/message/style/index.css",
-      "name": "./node_modules/antd/lib/message/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/pagination/style/index.css",
-      "name": "./node_modules/antd/lib/pagination/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/progress/style/index.css",
-      "name": "./node_modules/antd/lib/progress/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/radio/style/index.css",
-      "name": "./node_modules/antd/lib/radio/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/select/style/index.css",
-      "name": "./node_modules/antd/lib/select/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/spin/style/index.css",
-      "name": "./node_modules/antd/lib/spin/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/table/style/index.css",
-      "name": "./node_modules/antd/lib/table/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/tabs/style/index.css",
-      "name": "./node_modules/antd/lib/tabs/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/tag/style/index.css",
-      "name": "./node_modules/antd/lib/tag/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/tooltip/style/index.css",
-      "name": "./node_modules/antd/lib/tooltip/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/antd/lib/upload/style/index.css",
-      "name": "./node_modules/antd/lib/upload/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "../../grid/style/index.css": [
-    {
-      "id": "./node_modules/antd/lib/grid/style/index.css",
-      "name": "./node_modules/antd/lib/grid/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "undefined": [
-    {
-      "id": 24,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 25,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 8,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 26,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 20,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 27,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 4,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 15,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 9,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 28,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 6,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 29,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 10,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 30,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 5,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 19,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 13,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 31,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 7,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 11,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 14,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 12,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 18,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 16,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 17,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": 21,
-      "name": null,
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    },
-    {
-      "id": "./node_modules/fbjs/lib/emptyObject.js",
-      "name": "./node_modules/fbjs/lib/emptyObject.js",
-      "file": "static/chunks/3.js",
-      "publicPath": "static/chunks/3.js"
-    },
-    {
-      "id": "./node_modules/fbjs/lib/invariant.js",
-      "name": "./node_modules/fbjs/lib/invariant.js",
-      "file": "static/chunks/3.js",
-      "publicPath": "static/chunks/3.js"
-    },
-    {
-      "id": "./node_modules/fbjs/lib/warning.js",
-      "name": "./node_modules/fbjs/lib/warning.js",
-      "file": "static/chunks/4.js",
-      "publicPath": "static/chunks/4.js"
-    }
-  ],
-  "../../style/index.css": [
-    {
-      "id": "./node_modules/antd/lib/style/index.css",
-      "name": "./node_modules/antd/lib/style/index.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
-  "../style.css": [
-    {
-      "id": "./style.css",
-      "name": "./style.css",
-      "file": "static/chunks/styles.js",
-      "publicPath": "static/chunks/styles.js"
-    }
-  ],
   "./noop": [
     {
       "id": "./node_modules/next/dist/client/noop.js",
@@ -383,6 +41,12 @@
       "name": "./node_modules/antd/lib/_util/wave.js",
       "file": "static/chunks/3.js",
       "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/_util/wave.js",
+      "name": "./node_modules/antd/lib/_util/wave.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
     }
   ],
   "./button-group": [
@@ -397,6 +61,12 @@
       "name": "./node_modules/antd/lib/button/button-group.js",
       "file": "static/chunks/3.js",
       "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/button/button-group.js",
+      "name": "./node_modules/antd/lib/button/button-group.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
     }
   ],
   "./button": [
@@ -411,6 +81,12 @@
       "name": "./node_modules/antd/lib/button/button.js",
       "file": "static/chunks/3.js",
       "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/button/button.js",
+      "name": "./node_modules/antd/lib/button/button.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
     }
   ],
   "antd/lib/button": [
@@ -425,6 +101,12 @@
       "name": "./node_modules/antd/lib/button/index.js",
       "file": "static/chunks/3.js",
       "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/button/index.js",
+      "name": "./node_modules/antd/lib/button/index.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
     }
   ],
   "antd/lib/button/style/css": [
@@ -439,6 +121,12 @@
       "name": "./node_modules/antd/lib/button/style/css.js",
       "file": "static/chunks/3.js",
       "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/button/style/css.js",
+      "name": "./node_modules/antd/lib/button/style/css.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
     }
   ],
   "../calendar/locale/en_US": [
@@ -865,6 +553,12 @@
       "name": "./node_modules/css-animation/lib/Event.js",
       "file": "static/chunks/3.js",
       "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./node_modules/css-animation/lib/Event.js",
+      "name": "./node_modules/css-animation/lib/Event.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
     }
   ],
   "dom-closest": [
@@ -3137,6 +2831,194 @@
       "publicPath": "static/chunks/3.js"
     }
   ],
+  "undefined": [
+    {
+      "id": "./node_modules/fbjs/lib/emptyObject.js",
+      "name": "./node_modules/fbjs/lib/emptyObject.js",
+      "file": "static/chunks/3.js",
+      "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./node_modules/fbjs/lib/invariant.js",
+      "name": "./node_modules/fbjs/lib/invariant.js",
+      "file": "static/chunks/3.js",
+      "publicPath": "static/chunks/3.js"
+    },
+    {
+      "id": "./node_modules/fbjs/lib/warning.js",
+      "name": "./node_modules/fbjs/lib/warning.js",
+      "file": "static/chunks/4.js",
+      "publicPath": "static/chunks/4.js"
+    },
+    {
+      "id": 15,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 6,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 7,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 8,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 9,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 10,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 5,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 17,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 16,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 13,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 14,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 4,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 12,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 11,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 18,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 19,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 20,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 21,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 24,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 25,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 26,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 27,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 28,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 29,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 30,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 31,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 32,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": 33,
+      "name": null,
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
   "intersperse": [
     {
       "id": "./node_modules/intersperse/lib/intersperse.js",
@@ -3849,7 +3731,7 @@
       "publicPath": "static/chunks/4.js"
     }
   ],
-  "./col": [
+  "../grid/col": [
     {
       "id": "./node_modules/antd/lib/grid/col.js",
       "name": "./node_modules/antd/lib/grid/col.js",
@@ -3865,7 +3747,7 @@
       "publicPath": "static/chunks/4.js"
     }
   ],
-  "./row": [
+  "../grid/row": [
     {
       "id": "./node_modules/antd/lib/grid/row.js",
       "name": "./node_modules/antd/lib/grid/row.js",
@@ -3951,6 +3833,282 @@
       "name": "./node_modules/gud/index.js",
       "file": "static/chunks/4.js",
       "publicPath": "static/chunks/4.js"
+    }
+  ],
+  "./Order": [
+    {
+      "id": "./Components/Center/Order.js",
+      "name": "./Components/Center/Order.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
+    }
+  ],
+  "./Breadcrumb": [
+    {
+      "id": "./node_modules/antd/lib/breadcrumb/Breadcrumb.js",
+      "name": "./node_modules/antd/lib/breadcrumb/Breadcrumb.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/breadcrumb/Breadcrumb.js",
+      "name": "./node_modules/antd/lib/breadcrumb/Breadcrumb.js",
+      "file": "static/chunks/6.js",
+      "publicPath": "static/chunks/6.js"
+    }
+  ],
+  "./BreadcrumbItem": [
+    {
+      "id": "./node_modules/antd/lib/breadcrumb/BreadcrumbItem.js",
+      "name": "./node_modules/antd/lib/breadcrumb/BreadcrumbItem.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/breadcrumb/BreadcrumbItem.js",
+      "name": "./node_modules/antd/lib/breadcrumb/BreadcrumbItem.js",
+      "file": "static/chunks/6.js",
+      "publicPath": "static/chunks/6.js"
+    }
+  ],
+  "antd/lib/breadcrumb": [
+    {
+      "id": "./node_modules/antd/lib/breadcrumb/index.js",
+      "name": "./node_modules/antd/lib/breadcrumb/index.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/breadcrumb/index.js",
+      "name": "./node_modules/antd/lib/breadcrumb/index.js",
+      "file": "static/chunks/6.js",
+      "publicPath": "static/chunks/6.js"
+    }
+  ],
+  "antd/lib/breadcrumb/style/css": [
+    {
+      "id": "./node_modules/antd/lib/breadcrumb/style/css.js",
+      "name": "./node_modules/antd/lib/breadcrumb/style/css.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/breadcrumb/style/css.js",
+      "name": "./node_modules/antd/lib/breadcrumb/style/css.js",
+      "file": "static/chunks/6.js",
+      "publicPath": "static/chunks/6.js"
+    }
+  ],
+  "antd/lib/divider": [
+    {
+      "id": "./node_modules/antd/lib/divider/index.js",
+      "name": "./node_modules/antd/lib/divider/index.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/divider/index.js",
+      "name": "./node_modules/antd/lib/divider/index.js",
+      "file": "static/chunks/6.js",
+      "publicPath": "static/chunks/6.js"
+    }
+  ],
+  "antd/lib/divider/style/css": [
+    {
+      "id": "./node_modules/antd/lib/divider/style/css.js",
+      "name": "./node_modules/antd/lib/divider/style/css.js",
+      "file": "static/chunks/5.js",
+      "publicPath": "static/chunks/5.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/divider/style/css.js",
+      "name": "./node_modules/antd/lib/divider/style/css.js",
+      "file": "static/chunks/6.js",
+      "publicPath": "static/chunks/6.js"
+    }
+  ],
+  "./Customers": [
+    {
+      "id": "./Components/Center/Customers.js",
+      "name": "./Components/Center/Customers.js",
+      "file": "static/chunks/6.js",
+      "publicPath": "static/chunks/6.js"
+    }
+  ],
+  "../../style/index.css": [
+    {
+      "id": "./node_modules/antd/lib/style/index.css",
+      "name": "./node_modules/antd/lib/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "./index.css": [
+    {
+      "id": "./node_modules/antd/lib/input/style/index.css",
+      "name": "./node_modules/antd/lib/input/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/progress/style/index.css",
+      "name": "./node_modules/antd/lib/progress/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/alert/style/index.css",
+      "name": "./node_modules/antd/lib/alert/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/layout/style/index.css",
+      "name": "./node_modules/antd/lib/layout/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/message/style/index.css",
+      "name": "./node_modules/antd/lib/message/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/upload/style/index.css",
+      "name": "./node_modules/antd/lib/upload/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/form/style/index.css",
+      "name": "./node_modules/antd/lib/form/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/menu/style/index.css",
+      "name": "./node_modules/antd/lib/menu/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/card/style/index.css",
+      "name": "./node_modules/antd/lib/card/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/tabs/style/index.css",
+      "name": "./node_modules/antd/lib/tabs/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/icon/style/index.css",
+      "name": "./node_modules/antd/lib/icon/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/grid/style/index.css",
+      "name": "./node_modules/antd/lib/grid/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/tag/style/index.css",
+      "name": "./node_modules/antd/lib/tag/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/radio/style/index.css",
+      "name": "./node_modules/antd/lib/radio/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/tooltip/style/index.css",
+      "name": "./node_modules/antd/lib/tooltip/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/checkbox/style/index.css",
+      "name": "./node_modules/antd/lib/checkbox/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/badge/style/index.css",
+      "name": "./node_modules/antd/lib/badge/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/dropdown/style/index.css",
+      "name": "./node_modules/antd/lib/dropdown/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/breadcrumb/style/index.css",
+      "name": "./node_modules/antd/lib/breadcrumb/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/spin/style/index.css",
+      "name": "./node_modules/antd/lib/spin/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/divider/style/index.css",
+      "name": "./node_modules/antd/lib/divider/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/pagination/style/index.css",
+      "name": "./node_modules/antd/lib/pagination/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/button/style/index.css",
+      "name": "./node_modules/antd/lib/button/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/select/style/index.css",
+      "name": "./node_modules/antd/lib/select/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    },
+    {
+      "id": "./node_modules/antd/lib/table/style/index.css",
+      "name": "./node_modules/antd/lib/table/style/index.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "../style.css": [
+    {
+      "id": "./style.css",
+      "name": "./style.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
+    }
+  ],
+  "../../Style/course.css": [
+    {
+      "id": "./Style/course.css",
+      "name": "./Style/course.css",
+      "file": "static/chunks/styles.js",
+      "publicPath": "static/chunks/styles.js"
     }
   ]
 }

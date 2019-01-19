@@ -18,8 +18,7 @@ const { Item } = Menu;
 const ITEMS = [
   {name:"订单管理",icon:"user",url:"?subitem=mychannel",key:"mychannel"},
   {name:"消息",icon:"mail",url:"?subitem=message",key:"message"},
-  {name:"设置",icon:"setting",url:"?subitem=settings",key:"settings"},
-];
+  {name:"设置",icon:"setting",url:"?subitem=settings",key:"settings"}];
 
 @observer class UserCenter extends Component{
     @observable userInfo = null;
