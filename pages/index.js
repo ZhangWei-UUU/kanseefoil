@@ -24,7 +24,7 @@ class Home extends Component{
     return(
       <Layout>
         <Head>
-          <title>翰溪金箔官网</title>
+          <title>翰溪订单管理系统</title>
         </Head>
         <HeadNav themeStyle="transparent" loginUser={loginUser}/> 
         <Layout>

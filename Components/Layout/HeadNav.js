@@ -32,7 +32,7 @@ class HeadNav extends Component{
                 <div className="logo">
                   <p style={themeStyle === "light"?
                     {color:"#1890ff"}:null
-                  }>翰溪金箔官网</p>
+                  }>翰溪订单管理系统</p>
                 </div>
               </a>
             </Item>

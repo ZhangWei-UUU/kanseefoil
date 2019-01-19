@@ -33,7 +33,7 @@ class FooterNav extends Component{
                    
           </Row>
           <center style={{marginTop:"50px"}}>
-          翰溪金箔官网版权所有© 2018 备案号：沪ICP备18022274号-1
+          翰溪订单管理系统版权所有© 2018 备案号：沪ICP备18022274号-1
           </center>
         </div>
       </div>

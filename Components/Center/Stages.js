@@ -20,25 +20,25 @@ import request from "../Fetch/request";
     }
 
     render(){
-        console.log(this.props);
-        return(
-            <div className="app-details">
-                {this.application?
-                    <div>
-                        <div>
+      console.log(this.props);
+      return(
+        <div className="app-details">
+          {this.application?
+            <div>
+              <div>
                            
-                        </div>
+              </div>
                        
-                    </div>:null
+            </div>:null
                    
-                }
-            </div>
-        );
+          }
+        </div>
+      );
     }
 }
 
 Stages.propTypes = {
-    closeDrawer: PropTypes.func,
-    app:PropTypes.string
+  closeDrawer: PropTypes.func,
+  app:PropTypes.string
 };
 export default Stages;

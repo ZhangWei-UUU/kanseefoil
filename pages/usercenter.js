@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import { Layout,Menu,Icon,Skeleton } from "antd";
+import { Layout,Menu,Icon} from "antd";
 import { observer } from "mobx-react";
 import { observable, toJS } from "mobx";
 import PropTypes from "prop-types";
@@ -16,12 +16,9 @@ import "../style.css";
 const { Content, Sider } = Layout;
 const { Item } = Menu;
 const ITEMS = [
-  {name:"我的频道",icon:"user",url:"?subitem=mychannel",key:"mychannel"},
+  {name:"订单管理",icon:"user",url:"?subitem=mychannel",key:"mychannel"},
   {name:"消息",icon:"mail",url:"?subitem=message",key:"message"},
   {name:"设置",icon:"setting",url:"?subitem=settings",key:"settings"},
-  {name:"应用商店",icon:"shop",url:"?subitem=shop",key:"shop"},
-  {name:"条款及隐私政策",icon:"file-done",url:"?subitem=policy",key:"policy"},
-  {name:"帮助和反馈",icon:"customer-service",url:"?subitem=help",key:"help"}
 ];
 
 @observer class UserCenter extends Component{
@@ -65,7 +62,7 @@ const ITEMS = [
 
     render(){
       let {subitem,loginUser} = this.props;
-      let DynamicComponent =MultiComponents[subitem];
+      let DynamicComponent = MultiComponents[subitem];
 
       return(
         <Layout>

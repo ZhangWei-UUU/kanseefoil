@@ -1,17 +1,51 @@
 import React, { Component } from "react";
-import { Row, Col,Button } from "antd";
+import Link from "next/link";
+import { Row, Col,Button, Table,message } from "antd";
 import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 import PropTypes from "prop-types";
 import request from "../Fetch/request";
 import "../../Style/course.css";
+import fake from "./model";
 @observer class Mychannel extends Component{
-    @observable myCourses = [];
-    @observable isDrawer = false;
-    @observable currentCourse= "";
+    @observable columns = [
+      {key:0, title:"订单编号",dataIndex:"code",render:(ele)=>
+        <Link href={`/usercenter?subitem=orders&&id=${ele}`}>
+          <a>{ele}</a>
+        </Link>},
+      {key:1, title:"订货单位",dataIndex:"orderer",render:(ele)=>
+        <Link href={`/usercenter?subitem=customers&&id=${ele}`}>
+          <a>{ele}</a>
+        </Link>},
+      {key:2, title:"日期",dataIndex:"date"},
+      {key:3, title:"产品",dataIndex:"product",render:(ele,proxy)=>
+        <span>
+          <Link href={`/usercenter?subitem=products&&id=${ele}`}>
+            <a>{ele}</a>
+          </Link> | {proxy.color} | {proxy.size} 
+        </span>},
+      {key:4, title:"单价",dataIndex:"price"},
+      {key:5, title:"数量",dataIndex:"count"},
+      {key:6, title:"发货",dataIndex:"delivery",render:(ele,proxy)=>{
+        return <Link href={`/usercenter?subitem=delivery&&id=${proxy.code}`}><a>{ele?"已发货":"未发货"}</a></Link>;
+      }},
+      {key:67, title:"结算",dataIndex:"clearup",render:(ele,proxy)=>{
+        return <Link href={`/usercenter?subitem=balance&&id=${proxy.code}`}><a>{ele?"已结算":"未结算"}</a></Link>;
+      }},
+    ]
 
-    
-    
+    @observable dataSource = fake;
+
+    async componentDidMount(){
+    //   let data;
+    //   try{
+    //     data = await request("GET", "./model.json");  
+    //   }catch(error){
+    //     message.error(error.toString());
+    //   }
+
+    //   console.log(data);
+    }
     closeDrawer = () => {
       this.isDrawer = false;
     }
@@ -37,30 +71,11 @@ import "../../Style/course.css";
       }
     }
     render(){
-      let myCourses = this.props.userInfo.courses;
       return(
         <div>
-          <Row>
-            {
-              myCourses.map(channel=>(
-                <Col xl={6} lg={8} md={12} sm={12} key={channel} className="channel-wrap">
-                  <a href={`/course?name=${channel}`}>
-                    <div className="channel">
-                      <div className="channel-body">
-                        <img src={`/static/shop/${channel}.jpg`} alt={channel}/>
-                      </div>
-                      <div className="channel-footer">
-                        <p>
-                          {channel}
-                        </p>
-                        <Button type="primary" onClick={(e)=>this.delete(e,channel)}>删除</Button>
-                      </div>
-                    </div>
-                  </a>
-                </Col>
-              ))
-            }
-          </Row>
+          <div style={{margin:"30px auto",width:"95%",background:"#fff",height:"900px",padding:"50px"}}>
+            <Table columns={this.columns} dataSource={this.dataSource}/>
+          </div>
         </div>
       );
     }
