@@ -16,7 +16,8 @@ import "../style.css";
 const { Content, Sider } = Layout;
 const { Item } = Menu;
 const ITEMS = [
-  {name:"订单管理",icon:"user",url:"?subitem=mychannel",key:"mychannel"},
+  {name:"订单管理",icon:"file",url:"?subitem=mychannel",key:"mychannel"},
+  {name:"客户管理",icon:"usergroup-add",url:"?subitem=customerlist",key:"customerlist"},
   {name:"消息",icon:"mail",url:"?subitem=message",key:"message"},
   {name:"设置",icon:"setting",url:"?subitem=settings",key:"settings"}];
 

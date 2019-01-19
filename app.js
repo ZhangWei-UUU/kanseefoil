@@ -44,16 +44,11 @@ server.use(require("express-session")({
 server.use(cookieParser());
 server.use(compression());
 server.use("/api",api);
-server.use("/api/doc",docapi);
-server.use("/api/course",course);
-server.use("/api/shop",shopapi);
-server.use("/api/npm",npm);
 server.use(function (req, res, next) {
   return next();
 });
 
 app.prepare().then(()=>{
-
   server.get("/doc/:theme/:charpt",(req,res)=>{
     return app.render(req, res, "/doc",{theme:req.params.theme,charpt:req.params.charpt});
   });
@@ -61,7 +56,6 @@ app.prepare().then(()=>{
   server.ws("/ws",(ws,req)=>{
     console.log(ws);
   });
-  
 
   server.get("*", (req, res) => {
     return handle(req, res);

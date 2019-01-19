@@ -7,29 +7,24 @@ import PropTypes from "prop-types";
 import request from "../Fetch/request";
 import "../../Style/course.css";
 import fake from "./model";
-@observer class Mychannel extends Component{
+
+@observer class Customerlist extends Component{
     @observable columns = [
-      {key:0, title:"订单编号",dataIndex:"code",render:(ele)=>
+      {key:0, title:"客户编号",dataIndex:"code",render:(ele)=>
         <Link href={`/usercenter?subitem=orders&&id=${ele}`}>
           <a>{ele}</a>
         </Link>},
-      {key:1, title:"订货单位",dataIndex:"orderer",render:(ele)=>
+      {key:1, title:"客户名称",dataIndex:"orderer",render:(ele)=>
         <Link href={`/usercenter?subitem=customers&&id=${ele}`}>
           <a>{ele}</a>
         </Link>},
-      {key:2, title:"日期",dataIndex:"date"},
-      {key:3, title:"产品",dataIndex:"product",render:(ele,proxy)=>
+      {key:2, title:"地址",dataIndex:"date"},
+      {key:3, title:"税号",dataIndex:"product",render:(ele,proxy)=>
         <span>
           <Link href={`/usercenter?subitem=products&&id=${ele}`}>
             <a>{ele}</a>
           </Link> | {proxy.color} | {proxy.size} 
-        </span>},
-      {key:6, title:"发货",dataIndex:"delivery",render:(ele,proxy)=>{
-        return <Link href={`/usercenter?subitem=delivery&&id=${proxy.code}`}><a>{ele?"已发货":"未发货"}</a></Link>;
-      }},
-      {key:67, title:"结算",dataIndex:"clearup",render:(ele,proxy)=>{
-        return <Link href={`/usercenter?subitem=balance&&id=${proxy.code}`}><a>{ele?"已结算":"未结算"}</a></Link>;
-      }},
+        </span>}
     ]
 
     @observable dataSource = fake;
@@ -73,15 +68,23 @@ import fake from "./model";
         <div>
           <div style={{margin:"30px auto",width:"95%",background:"#fff",height:"900px",padding:"50px"}}>
             <Table columns={this.columns} dataSource={this.dataSource}/>
+            <center>
+              <Button type="primary" style={{marginTop:"50px"}}>
+                <Link href={"/usercenter?subitem=addCustomer"}><a>
+            添加客户
+                </a></Link>
+              </Button>
+         
+            </center>
           </div>
         </div>
       );
     }
 }
 
-Mychannel.propTypes = {
+Customerlist.propTypes = {
   userInfo: PropTypes.object,
   update: PropTypes.func
 };
 
-export default Mychannel;
+export default Customerlist;
