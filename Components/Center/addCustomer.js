@@ -9,19 +9,7 @@ import "../../Style/course.css";
 import fake from "./model";
 
 @observer class addCustomer extends Component{
-
-    @observable dataSource = fake;
     @observable loading = false;
-    async componentDidMount(){
-    //   let data;
-    //   try{
-    //     data = await request("GET", "./model.json");  
-    //   }catch(error){
-    //     message.error(error.toString());
-    //   }
-
-    //   console.log(data);
-    }
     checkPublicCode = (rule, value, callback) => {
       if(value && value.length>16 && value.length !== 18 ){
         callback("统一社会信用代码长度为18位");
@@ -41,7 +29,6 @@ import fake from "./model";
       e.preventDefault();
       this.props.form.validateFields(async (err, values) => {
         if (!err) {
-          console.log(values);
           if(values.code && values.code.length !== 18){
             message.error("统一社会信用代码长度为18位");
           }else if(values.tel && values.tel.length !== 11){
@@ -49,12 +36,25 @@ import fake from "./model";
           }else{
             this.loading = true;
             let res;
+            values.contactors = [];
+            let firstcontact = {};
+            firstcontact.name = values.contactor;
+            firstcontact.tel = values.tel;
+            values.contactors.push(firstcontact);
+            delete values.contactor;
+            delete values.tel;
             try{
-              res = await request("POST","/api/customer/insert",values);
+              res = await request("POST","/api/customer",values);
             }catch(err){
-              throw error(err);
+              console.error(err);
             }finally{
               this.loading =false;
+            }
+            if(res.ok === 1 && res.n ===1){
+              message.success("添加成功");
+              this.props.form.resetFields();
+            }else{
+              message.error("添加失败");
             }
           }
         }

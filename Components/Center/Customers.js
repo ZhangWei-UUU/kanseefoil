@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import {  Breadcrumb, Icon, Divider, Row,Col,Card,Avatar,Button } from "antd";
+import PropTypes from "prop-types";
+import { observer } from "mobx-react";
+import { observable } from "mobx";
+import {  Breadcrumb, Icon, Divider, Row,Col,message,Button,Card,Avatar } from "antd";
 import request from "../Fetch/request";
 import "../../style.css";
 
@@ -15,15 +18,35 @@ const customer = {
   ]
 };
 
-class Customers extends Component{
+@observer class Customers extends Component{
+  componentDidMount(){
+    this.getDetails();
+  }
+  
+  @observable customer = null;
+  getDetails = async () => {
+    let data;
+    try{
+      data = await request("GET", `/api/customer/${this.props.id}`);  
+    }catch(error){
+      message.error(error.toString());
+    }
+    if(data.name){
+      this.customer = data;
+    }else{
+      message.error("数据加载失败");
+    }
+   
+  }
+
   render(){
     return(
       <div style={{margin:"30px auto",width:"95%",background:"#fff",height:"900px",padding:"50px"}}>
         <Breadcrumb>
           <Breadcrumb.Item>
-            <Link  href="/usercenter?subitem=mychannel"><a>
+            <Link  href="/usercenter?subitem=customerlist"><a>
               <Icon type="home" />
-              <span>订单列表</span>
+              <span>客户列表</span>
             </a></Link>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
@@ -34,11 +57,11 @@ class Customers extends Component{
         <Divider/>
         <Row gutter={16}>
           <Col lg={8}>
-            <h1>{customer.name}</h1>
-            <h3>地址：{customer.address}</h3>
-            <h3>税号：{customer.code}</h3>
+            <h1>{this.customer && this.customer.name?this.customer.name:null}</h1>
+            <h3>地址：{this.customer && this.customer.address?this.customer.address:null}</h3>
+            <h3>税号：{this.customer && this.customer.code?this.customer.code:null}</h3>
           </Col>
-          {customer.contactors.map((contactor,key)=>{
+          {this.customer && this.customer.contactors?this.customer.contactors.map((contactor,key)=>{
             return(
               <Col lg={8} key={key}>
                 <Card>
@@ -50,12 +73,12 @@ class Customers extends Component{
                 </Card>
               </Col>
             );
-          })}
+          }):null}
           
         </Row>
         <center>
           <Button type="primary" style={{marginTop:"50px"}}>
-            <Link href={`/usercenter?subitem=editConstomer&&id=${customer.id}`}><a>
+            <Link href={`/usercenter?subitem=editConstomer&id=${customer.id}`}><a>
             修改客户信息
             </a></Link>
           </Button>
@@ -65,5 +88,9 @@ class Customers extends Component{
     );
   }
 }
+
+Customers.propTypes = {
+  id: PropTypes.string
+};
 
 export default Customers;

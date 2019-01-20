@@ -22,23 +22,16 @@ const ITEMS = [
   {name:"设置",icon:"setting",url:"?subitem=settings",key:"settings"}];
 
 @observer class UserCenter extends Component{
-    @observable userInfo = null;
-    static getInitialProps(ctx){
-      if(process.browser){
-        if(ctx.query.subitem){
-          return {subitem:ctx.query.subitem,loginUser:ctx.loginUser}; 
-        }else{
-          return {subitem:"mychannel",loginUser:ctx.loginUser}; 
-        }
-     
-      }else{
-        if(ctx.req.query.subitem){
-          return {subitem:ctx.req.query.subitem,loginUser:ctx.req.session.loginUser};
-        }else{
-          return {subitem:"mychannel",loginUser:ctx.req.session.loginUser};
-        }     
-      }
+
+  static getInitialProps(ctx){
+    if(process.browser){
+      console.log(ctx);
+      return {subitem: ctx.query.subitem || "mychannel",loginUser:ctx.loginUser,id:ctx.query.id || ""}; 
+    }else{
+      return {subitem:ctx.req.query.subitem || "mychannel",loginUser:ctx.req.session.loginUser,id:ctx.req.query.id || ""};   
     }
+  }
+    @observable userInfo = null;
 
     async componentDidMount() {
       let data;
@@ -90,7 +83,7 @@ const ITEMS = [
               </Menu>
             </Sider>
             <Content>
-              {this.userInfo?<DynamicComponent userInfo={toJS(this.userInfo)} update={this.update}/>:null}
+              {this.userInfo?<DynamicComponent userInfo={toJS(this.userInfo)} update={this.update} id={this.props.id}/>:null}
             </Content>  
           </Layout>
           <FooterNav /> 
@@ -101,7 +94,8 @@ const ITEMS = [
 
 UserCenter.propTypes = {
   subitem: PropTypes.string,
-  loginUser:PropTypes.string
+  loginUser:PropTypes.string,
+  id:PropTypes.string
 };
 
 export default withPrivate(UserCenter,{redirect:true});

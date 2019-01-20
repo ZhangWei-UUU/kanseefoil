@@ -5,13 +5,13 @@ const nodemailer = require("nodemailer");
 const MongoClient = require("mongodb").MongoClient;
 const os = require("os");
 var fs = require("fs");
+const request = require("request");
 var hash = require("hash.js");
 var checkPrivated = require("./Middleware/authentication");
 var checkRegister = require("./Middleware/checkRegister");
 var checkBlacklist = require("./Middleware/checkBlacklist");
 const DB_CONFIG = require("../db");
 const User = require("../Class/User");
-const errorRecorder = require("./Tools/errorRecorder");
 
 router.post("/register",checkRegister,(req,res)=>{
   MongoClient.connect(DB_CONFIG.url, function(err, client) {
@@ -95,8 +95,41 @@ router.get("/currentUserInfo",checkPrivated,(req,res)=>{
       res.send(DB_CONFIG.dbError);
            
     }
-  });
-    
+  });  
+});
+
+// 添加新客户
+router.post("/customer",(req,res)=>{
+  const options = {
+    url: "http://localhost:3010/customer",
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(req.body)
+  };
+  request.post(options).on("error",(err)=>{
+    res.statusCode = "500";
+    res.statusMessage = err;
+    res.end();
+  }).pipe(res);
+});
+
+// 获取全部客户数据
+router.get("/customer/:id",(req,res)=>{
+  request(`http://localhost:3010/customer/${req.params.id}`).on("error",(err)=>{
+    res.statusCode = "500";
+    res.statusMessage = err;
+    res.end();
+  }).pipe(res);
+});
+
+// 删除客户数据
+router.delete("/customer/:id",(req,res)=>{
+  console.log(req.params.id);
+  request.del(`http://localhost:3010/customer/${req.params.id}`).on("error",(err)=>{
+    res.statusCode = "500";
+    res.statusMessage = err;
+    res.end();
+  }).pipe(res);
 });
 
 router.get("/mail",(req,res)=>{

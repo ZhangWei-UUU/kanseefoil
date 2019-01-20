@@ -1,73 +1,65 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import { Row, Col,Button, Table,message } from "antd";
+import { Button, Table,message,Icon } from "antd";
 import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 import PropTypes from "prop-types";
 import request from "../Fetch/request";
 import "../../Style/course.css";
-import fake from "./model";
 
 @observer class Customerlist extends Component{
-    @observable columns = [
-      {key:0, title:"客户编号",dataIndex:"code",render:(ele)=>
-        <Link href={`/usercenter?subitem=orders&&id=${ele}`}>
-          <a>{ele}</a>
-        </Link>},
-      {key:1, title:"客户名称",dataIndex:"orderer",render:(ele)=>
-        <Link href={`/usercenter?subitem=customers&&id=${ele}`}>
-          <a>{ele}</a>
-        </Link>},
-      {key:2, title:"地址",dataIndex:"date"},
-      {key:3, title:"税号",dataIndex:"product",render:(ele,proxy)=>
-        <span>
-          <Link href={`/usercenter?subitem=products&&id=${ele}`}>
-            <a>{ele}</a>
-          </Link> | {proxy.color} | {proxy.size} 
-        </span>}
-    ]
-
-    @observable dataSource = fake;
-
-    async componentDidMount(){
-    //   let data;
-    //   try{
-    //     data = await request("GET", "./model.json");  
-    //   }catch(error){
-    //     message.error(error.toString());
-    //   }
-
-    //   console.log(data);
-    }
-    closeDrawer = () => {
-      this.isDrawer = false;
-    }
-
-    popUp = (channel) => {
-      this.isDrawer = true;
-      this.currentCourse = channel;
+    @observable dataSource = [];
+    componentDidMount(){
+      this.getList();
     }
     
-    delete = async (e,value) =>{
-      e.preventDefault();
-      e.stopPropagation();
+    getList = async () =>{
       let data;
       try{
-        data = await request("DELETE", `/api/shop/order/${value}`);  
+        data = await request("GET", "/api/customer/all");  
       }catch(error){
-        message.error(data);
+        message.error(error.toString());
       }
-      if(data.success){
-        this.props.update();
-      }else{
-        message.warn("失败");
+  
+      if(data && data.length>0){
+        this.dataSource = data.reverse();
       }
     }
+
+    delete = async (_id) => {
+      let res;
+      try{
+        res = await request("DELETE", `/api/customer/${_id}`);  
+      }catch(error){
+        message.error(error.toString());
+      }
+      if(res && res.value && res.value._id === _id && res.ok === 1){
+        message.success("删除成功");
+        this.getList();
+      }else{
+        message.error("删除失败，请检查网");
+      }
+    }
+    
     render(){
+      const columns = [
+        {key:3, title:"税号",dataIndex:"code"},
+        {key:1, title:"客户名称",dataIndex:"name",render:(ele,proxy)=>
+          <Link href={`/usercenter?subitem=customers&id=${proxy._id}`}>
+            <a>{ele}</a>
+          </Link>},
+        {key:2, title:"地址",dataIndex:"address"},
+        {key:4, title:"联系人",dataIndex:"contactors",render:(ele)=>ele && ele.length>0?ele[0].name:"无"},
+        {key:5, title:"联系电话",dataIndex:"contactors",render:(ele)=>ele && ele.length>0?ele[0].tel:"无"},
+        {key:6, title:"操作",dataIndex:"handle",render:(ele,proxy)=>{
+          return(<a onClick={()=>this.delete(proxy._id)}><Icon type="delete"/></a>);
+        }},
+      ];
+
       return(
         <div>
           <div style={{margin:"30px auto",width:"95%",background:"#fff",height:"900px",padding:"50px"}}>
-            <Table columns={this.columns} dataSource={this.dataSource}/>
+            <Table columns={columns} dataSource={this.dataSource}/>
             <center>
               <Button type="primary" style={{marginTop:"50px"}}>
                 <Link href={"/usercenter?subitem=addCustomer"}><a>
