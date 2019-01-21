@@ -15,6 +15,7 @@ var configure = require("./configure/index.js");
 var app = next({dev});
 const DB_CONFIG = require("./db");
 var api = require("./api/index.js");
+var order = require("./api/order.js");
 
 const handle = app.getRequestHandler();
 
@@ -40,6 +41,7 @@ server.use(require("express-session")({
 server.use(cookieParser());
 server.use(compression());
 server.use("/api",api);
+server.use("/api/order",order);
 
 server.use(function (req, res, next) {
   return next();

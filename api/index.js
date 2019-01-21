@@ -124,7 +124,6 @@ router.get("/customer/:id",(req,res)=>{
 
 // 删除客户数据
 router.delete("/customer/:id",(req,res)=>{
-  console.log(req.params.id);
   request.del(`http://localhost:3010/customer/${req.params.id}`).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;

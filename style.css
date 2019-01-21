@@ -233,3 +233,42 @@
     width: 900px;
     margin: 20px auto;
 }
+
+.goods-header {
+    background-color: #e8e8e8;
+    padding: 10px;
+    height: 50px;
+    line-height: 30px;
+    color: #838383
+}
+
+.select-box {
+    border: 1px solid #ccc;
+    margin: 5px;
+    text-align: center; 
+}
+
+.select-box-active {
+    border: 2px solid red;
+    margin: 5px;
+    text-align: center; 
+}
+.select-box:hover {
+    border: 2px solid red;
+    cursor: pointer;
+}
+
+.goods-btn-empty {
+    border: 1px solid #FF0036;
+    width: 180px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #ffeded;
+    color:#FF0036;
+    margin:10px auto;
+    outline: none;
+}
+
+.goods-btn-empty:hover{
+    cursor: pointer;
+}

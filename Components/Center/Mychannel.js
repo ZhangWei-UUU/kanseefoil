@@ -35,14 +35,14 @@ import fake from "./model";
     @observable dataSource = fake;
 
     async componentDidMount(){
-    //   let data;
-    //   try{
-    //     data = await request("GET", "./model.json");  
-    //   }catch(error){
-    //     message.error(error.toString());
-    //   }
+      let data;
+      try{
+        data = await request("GET", "/api/order/all");  
+      }catch(error){
+        message.error(error.toString());
+      }
 
-    //   console.log(data);
+      console.log(data);
     }
     closeDrawer = () => {
       this.isDrawer = false;

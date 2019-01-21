@@ -1,71 +1,101 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import { Breadcrumb,Icon,Button,Divider, Form, Input,Row,Col,message } from "antd";
+import { Breadcrumb,Icon,Button,Divider, Drawer,Row,Col,message,Select, Table } from "antd";
 import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 import PropTypes from "prop-types";
 import request from "../Fetch/request";
 import "../../Style/course.css";
-import fake from "./model";
+
+const {Option} = Select;
 
 @observer class addOrder extends Component{
-    @observable loading = false;
-    checkPublicCode = (rule, value, callback) => {
-      if(value && value.length>16 && value.length !== 18 ){
-        callback("统一社会信用代码长度为18位");
-      }else{
-        callback(undefined);
+    @observable customers = null;
+    @observable selectedCustomer = null;
+    @observable selectedContactor = null;
+    @observable visible = false;
+    async componentDidMount(){
+      let data;
+      try{
+        data = await request("GET", "/api/customer/all");  
+      }catch(error){
+        message.error(error.toString());
       }
+    
+      if(data && data.length>0){
+        this.customers = data.reverse();
+        this.selectedCustomer = this.customers[0];
+        this.selectedContactor = this.customers[0].contactors[0];
+      }
+    }
+
+    showDrawer = () => {
+      this.visible= true;
     }
     
-    checkTel = (rule, value, callback) => {
-      if(value && value.length>10 && value.length !== 11){
-        callback("电话号码长度为11位");
-      }else{
-        callback(undefined);
-      }
+    onClose = () => {
+      this.visible= false;
+    };
+
+    selectCustomer = (e) => {
+      this.customers.forEach(customer=>{
+        if(customer.name === e){
+          this.selectedContactor = customer.contactors[0];
+          this.selectedCustomer = customer;
+        }
+      });
     }
+
+    selectedContactor = (e) => {
+      this.selectedCustomer.contactors.forEach(contactor=>{
+        if(contactor.name === e){
+          this.selectedContactor = contactor;
+        }
+      });
+    }
+
     handleSubmit = (e) => {
       e.preventDefault();
       this.props.form.validateFields(async (err, values) => {
         if (!err) {
-          if(values.code && values.code.length !== 18){
-            message.error("统一社会信用代码长度为18位");
-          }else if(values.tel && values.tel.length !== 11){
-            message.error("电话号码长度为11位");
-          }else{
-            this.loading = true;
-            let res;
-            values.contactors = [];
-            let firstcontact = {};
-            firstcontact.name = values.contactor;
-            firstcontact.tel = values.tel;
-            values.contactors.push(firstcontact);
-            delete values.contactor;
-            delete values.tel;
-            try{
-              res = await request("POST","/api/customer",values);
-            }catch(err){
-              console.error(err);
-            }finally{
-              this.loading =false;
-            }
-            if(res.ok === 1 && res.n ===1){
-              message.success("添加成功");
-              this.props.form.resetFields();
-            }else{
-              message.error("添加失败");
-            }
-          }
+    
         }
       });
     }
 
     render(){
-      const { getFieldDecorator } = this.props.form;
+      const columns = [{
+        title: "产品型号",
+        dataIndex: "name",
+        key: "name",
+      }, {
+        title: "尺寸",
+        dataIndex: "size",
+        key: "size",
+      }, {
+        title: "颜色",
+        dataIndex: "color",
+        key: "color",
+      }, {
+        title: "单价",
+        dataIndex: "price",
+        key: "price",
+      }, {
+        title: "数量",
+        dataIndex: "count",
+        key: "count",
+      }, {
+        title: "合计",
+        dataIndex: "sum",
+        key: "sum",
+      }, {
+        title: "操作",
+        dataIndex: "handle",
+        key: "handle",
+      }];
       return(
         <div>
-          <div style={{margin:"30px auto",width:"1200px",background:"#fff",height:"600px",padding:"50px"}}>
+          <div style={{margin:"30px auto",width:"1200px",background:"#fff",height:"800px",padding:"50px"}}>
             <Breadcrumb>
               <Breadcrumb.Item>
                 <Link  href="/usercenter?subitem=mychannel"><a>
@@ -80,31 +110,68 @@ import fake from "./model";
             </Breadcrumb>
             <Divider/>
             <Row>
-              <Col lg={12}>
-            ss
+              <Col lg={7}>
+                <Button type="primary" onClick={this.showDrawer}>
+                  <Icon type="plus" /> 添加产品
+                </Button>     
               </Col>
-              <Col lg={12}>
-                <Form onSubmit={this.handleSubmit} style={{width:"350px",margin:"0 auto"}}>
-                  <Form.Item>
-                    {getFieldDecorator("name", {
-                      rules: [{ required: true, message: "请填写公司全称!" }],
-                    })(
-                      <Input prefix={<Icon type="trademark" style={{ color: "rgba(0,0,0,.25)" }} />} placeholder="公司全称" />
-                    )}
-                  </Form.Item>
-            
-                  <Form.Item>
-                    <Button type="primary" htmlType="submit" 
-                      loading={this.loading}
-                      style={{width:"350px"}}>
-                      添加产品
-                    </Button>
-          
-                  </Form.Item>
-                </Form>
+              <Col lg={8}>
+                {this.customers?
+                  <Select prefix={<Icon type="trademark" style={{ color: "rgba(0,0,0,.25)"}} />} 
+                    placeholder="选择客户名称" onChange={this.selectCustomer} 
+                    defaultValue={this.customers.length>0?this.customers[0].name:null}
+                    style={{width:"100%" }} >
+                    {this.customers.map(customer=>{
+                      return(<Option key={customer.name}>{customer.name}</Option>);
+                    })}
+                  </Select>:null}
+              </Col>
+              <Col lg={{span:8,offset:1}}>
+                <h3>地址：{this.selectedCustomer?`${this.selectedCustomer.address}`:null}</h3>
               </Col>
             </Row>
+            <Row style={{marginTop:"20px"}}>
+              <Col lg={{span:8,offset:7}}>
+                {this.selectedContactor.name
+                  ?
+                  <Select prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)"}} />} 
+                    placeholder="联系人" style={{width:"100%" }} 
+                    value={this.selectedContactor.name}
+                  >
+                    {this.selectedCustomer.contactors.map(customer=>{
+                      return(<Option key={customer.name}>{customer.name}</Option>);
+                    })}
+                  </Select>:null}
+              </Col>
+              <Col lg={{span:8,offset:1}}>
+                <h3>电话：{this.selectedContactor?this.selectedContactor.tel:null}</h3>
+              </Col>
+              <div>
+               
+                <Table columns={columns} style={{margin:"50px 0"}}/>
+                <h2>总价：</h2>    
+                
+                <center>
+                  <Button type="primary" htmlType="submit" 
+                    loading={this.loading}
+                    style={{width:"350px"}}>
+                      确认下单
+                  </Button>
+          
+                </center>
+              </div>
+            </Row>
           </div>
+          <Drawer title="产品选择"
+            width={420}
+            placement="left"
+            onClose={this.onClose}
+            visible={this.visible}
+            style={{
+              overflow: "auto",
+              height: "calc(100% - 108px)",
+              paddingBottom: "108px",
+            }}>xxx</Drawer>
         </div>
       );
     }
@@ -112,8 +179,7 @@ import fake from "./model";
 
 addOrder.propTypes = {
   userInfo: PropTypes.object,
-  update: PropTypes.func,
   form:PropTypes.object
 };
 
-export default Form.create()(addOrder);
+export default addOrder;
