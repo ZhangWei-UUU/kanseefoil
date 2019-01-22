@@ -2,10 +2,7 @@ import React,{Component} from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 import {Icon} from "antd";
-import LotList from "../../Components/DynamicUI/LotList";
-import MyLot from "../../Components/DynamicUI/MyLot";
-import BlockIcon from "../../Components/DynamicUI/BlockIcon";
-import LotDetails from "../../Components/DynamicUI/LotDetails";
+
 import "./DynamicUi.css";
 import "./animate.css";
 
@@ -44,15 +41,7 @@ const ITEMS = [
               })}
             </ul>
           </div>
-          <div className="dynamic-ui-container">
-            {this.current === 1?<LotList selectItem={this.selectItem}/>:
-              null}
-            {this.current === 2? <MyLot selectItem={this.selectItem}/>:
-              null}
-            {this.current === 10? <LotDetails selectItem={this.selectItem}/>:
-              null}
-          </div>
-          <BlockIcon/>
+         
         </div>
       );
     }
