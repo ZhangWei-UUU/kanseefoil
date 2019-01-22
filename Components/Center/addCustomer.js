@@ -46,6 +46,7 @@ import fake from "./model";
             try{
               res = await request("POST","/api/customer",values);
             }catch(err){
+              message.error("请检查网络，接口调用失败");
               console.error(err);
             }finally{
               this.loading =false;
@@ -54,7 +55,7 @@ import fake from "./model";
               message.success("添加成功");
               this.props.form.resetFields();
             }else{
-              message.error("添加失败");
+              message.error("添加失败，请检查数据库是否正常运行");
             }
           }
         }
