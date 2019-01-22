@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import {  Upload, Icon,Breadcrumb,Row,Col,Divider, Form, Tag,Modal } from "antd";
+import {  Upload, Icon,Breadcrumb,Row,Col,Divider, Form, Tag,Modal,Input } from "antd";
 import { observer } from "mobx-react";
 import { observable} from "mobx";
 import PropTypes from "prop-types";
@@ -12,7 +12,7 @@ const product = {
   pictures:["/static/images/test-goods.png"],
   name: "Xiaomi/小米 小米8年度旗舰全面屏骁龙845处理器官方正品智能手机",
   price:2200,
-  size:[120,240],
+  size:["120米","240米"],
   colors:["red","black","golden","white","blue"],
   machines:["自动滚烫机","手动烫印机"],
   materials:["纸张","塑料","皮革"]
@@ -103,7 +103,9 @@ const product = {
                 </div>
               </Col>
               <Col span={14}>
-                <h3>{product.name}</h3>
+                <h3>
+                  <Input placeholder="产品名称及相关型号名" style={{color:"#000",fontWeight:"bolder"}}/>
+                </h3>
                 <div className="goods-header">
                   <Row>
                     <Col span={6}>
@@ -120,9 +122,9 @@ const product = {
                     {product.size.map((s,key)=>{
                       return(
                         <Col span={4} key={key}>
-                          <div className={key===0?"select-box-active":"select-box"}>
+                          <Tag closable className="goods-tag">
                             {s}
-                          </div>
+                          </Tag>
                         </Col>
                       );
                     })}
@@ -132,9 +134,9 @@ const product = {
                     {product.colors.map((s,key)=>{
                       return(
                         <Col span={4} key={key}>
-                          <div className={key===0?"select-box-active":"select-box"}>
+                          <Tag closable className="goods-tag">
                             {s}
-                          </div>
+                          </Tag>
                         </Col>
                       );
                     })}
@@ -143,8 +145,8 @@ const product = {
                     <Col span={4}>适用材质</Col>
                     {product.materials.map((s,key)=>{
                       return(
-                        <Col span={4} key={key}>
-                          <Tag color="red">
+                        <Col span={3} key={key}>
+                          <Tag color="red" closable>
                             {s}
                           </Tag>
                         </Col>
@@ -156,7 +158,7 @@ const product = {
                     {product.machines.map((s,key)=>{
                       return(
                         <Col span={4} key={key}>
-                          <Tag color="blue">
+                          <Tag color="blue" closable>
                             {s}
                           </Tag>
                         </Col>
@@ -164,7 +166,11 @@ const product = {
                     })}
                   </Row>
                   <Row>
-                    <button className="goods-btn-empty">编辑商品信息</button>
+                    <Col span={4}>价格规则设置</Col>
+                    
+                  </Row>
+                  <Row>
+                    <button className="goods-btn-empty">信息已确认，提交</button>
                   </Row>
                 </div>
               </Col>

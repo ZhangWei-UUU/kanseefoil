@@ -272,3 +272,10 @@
 .goods-btn-empty:hover{
     cursor: pointer;
 }
+
+.goods-tag {
+    border-radius: 0;
+    height: 30px;
+    line-height: 30px;
+    min-width: 50px;
+}

@@ -2,6 +2,8 @@ import React,{Component} from "react";
 import {Layout,Row,Col} from "antd";
 import Head from "next/head";
 import PropTypes from "prop-types";
+import { observer } from "mobx-react";
+import { observable } from "mobx";
 import dynamic from "next/dynamic";
 import withPrivate from "../Components/Authentication";
 import HeadNav from "../Components/Layout/HeadNav";
@@ -11,36 +13,52 @@ const { Content } = Layout;
 
 const DynamicFooter = dynamic(import("../Components/Layout/FooterNav"),{ssr:false});
 
-class Home extends Component{
-  static getInitialProps(ctx){
-    if(process.browser){
-      return {loginUser:window.LOGIN_DATA.loginUser};
-    }else{
-      return {loginUser:ctx.req.session.loginUser};   
+@observer class Home extends Component{
+    @observable list = []
+    static getInitialProps(ctx){
+      if(process.browser){
+        return {loginUser:window.LOGIN_DATA.loginUser};
+      }else{
+        return {loginUser:ctx.req.session.loginUser};   
+      }
     }
-  }
-  render(){
-    let {loginUser} = this.props;
-    return(
-      <Layout>
-        <Head>
-          <title>翰溪订单管理系统</title>
-        </Head>
-        <HeadNav themeStyle="transparent" loginUser={loginUser}/> 
+
+    componentDidMount(){
+      let array = [];
+      for(let i = 0;i<100;i+=1){
+        array.push({url:"/static/images/print-test.png"});
+      }
+      this.list = array;
+    }
+
+    render(){
+      let {loginUser} = this.props;
+      return(
         <Layout>
-          <Content >
-            <div className="first-component">
-              <div className="first-component-wrapper">
-                            
-              </div>
-            </div>
-           
-          </Content>
+          <Head>
+            <title>KANSEE 金箔</title>
+          </Head>
+          <HeadNav themeStyle="light" loginUser={loginUser}/> 
+          <Row gutter={16}>
+            {this.list.map((picture,key)=>
+              <Col key={key} lg={4}>
+                <div 
+                  style={{
+                    height:400,
+                    borderRadius:"18px",
+                    margin:"10px",
+                    width:"100%",
+                    boxShadow:"0 8px 40px rgba(0, 0, 0, 0.15)"
+                  }}>
+                  <img src={picture.url} style={{width:"100%",height:"100%",borderRadius:"18px"}}/>
+                </div>
+              </Col>
+            )}
+          </Row>
+          <DynamicFooter /> 
         </Layout>
-        <DynamicFooter /> 
-      </Layout>
-    );
-  }
+      );
+    }
 };
 
 Home.propTypes = {
