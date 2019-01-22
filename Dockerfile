@@ -1,4 +1,4 @@
-FROM node:10.4.1
+FROM node:9.10.0
 RUN mkdir /mainApp
 WORKDIR /mainApp
 COPY . /mainApp
