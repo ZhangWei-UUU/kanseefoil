@@ -58,7 +58,6 @@ class Register extends Component{
         <div className="login">
           <div className="login-form">
             <div>
-              <img src="/static/images/logo.webp" className="login-icon"  alt="logo"/>
               <h1>注册 翰溪订单管理系统</h1>
             </div>
             {alert?<Alert message={alert}
