@@ -4,7 +4,6 @@ import { observable } from "mobx";
 import {Icon} from "antd";
 
 import "./DynamicUi.css";
-import "./animate.css";
 
 const PRODUCTNAME = "绿地金融";
 const ITEMS = [
