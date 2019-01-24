@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const getIP = require("external-ip")();
-const nodemailer = require("nodemailer");
+
 const MongoClient = require("mongodb").MongoClient;
 const os = require("os");
 var fs = require("fs");
@@ -130,65 +129,6 @@ router.delete("/customer/:id",(req,res)=>{
   }).pipe(res);
 });
 
-router.get("/mail",(req,res)=>{
-  let transporter = nodemailer.createTransport({
-    host: "smtp.qq.com",
-    auth: {
-      user: "350095093@qq.com", // generated ethereal user
-      pass: "ldysztmohryebiea" // generated ethereal password
-    }
-  });
 
-  let mailOptions = {   
-    from: "350095093@qq.com", // sender address
-    to: "kanseefoil@gmail.com", // list of receivers
-    subject: "翰溪新版部署成功", // Subject line
-    text: "翰溪新版部署成功", // plain text body
-    html: "<a href=\"http://funningcoin.cn\"><button>查看详情</button></a>" // html body
-  };
-
-  transporter.sendMail(mailOptions,(err,info)=>{
-    if(err){
-      console.error(err);
-    }else{
-      res.send(info);
-    }
-  });
-});
-
-
-
-router.get("/environment",(req,res)=>{
-  MongoClient.connect(DB_CONFIG.url,(err,client)=>{
-    if(!err){
-      const db1 = client.db(DB_CONFIG.dbname);
-      const db2 = client.db("session");
-      const collection1 = db1.collection("users");
-      const collection2 = db1.collection("sessions");
-      collection1.find({}).toArray(function(err, docs) {
-           
-      });
-      collection2.find({}).toArray(function(err, docs) {
-              
-      });
-    }
-  });
-  getIP((err, ip) => {
-    if (err) {
-      throw err;
-    }
-    var obj = {};
-    obj.pid = process.pid;
-    obj.environment = process.env.NODE_ENV;
-    obj.dbPort = process.env.DB_PORT;
-    obj.cpu = os.cpus();
-    obj.network = os.networkInterfaces();
-    obj.osType = os.type();
-    obj.freeMem = os.freemem();
-    obj.ip = ip;
-    res.send(obj);
-  });
-    
-});
 
 module.exports = router;
