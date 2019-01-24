@@ -1,9 +1,7 @@
 import React,{Component} from "react";
-import Link from "next/link";
 import { Input,Icon, Button,Form ,Alert,message} from "antd";
 import PropTypes from "prop-types";
 import request from "../Components/Fetch/request";
-import Router from "next/router";
 
 import "../style.css";
 
@@ -87,7 +85,7 @@ class Login extends Component{
                   className="login-form-button">
                             登录
                 </Button>
-                <Link href="/register"><a>立即注册</a></Link>
+                <a href="/register"><a>立即注册</a></a>
               </FormItem>
             </Form>
             <div>
