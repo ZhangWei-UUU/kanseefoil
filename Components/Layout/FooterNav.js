@@ -12,7 +12,7 @@ const array = [
 class FooterNav extends Component{
   render(){
     return(
-      <div className="footer">
+      <div className="footer" async>
         <div className="footer-content">
           <Row>
             {array.map(obj=>{
