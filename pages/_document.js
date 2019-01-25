@@ -26,6 +26,7 @@ class MyDocument extends Document {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="description" content="Kanseefoil"/>
           <link rel="shortcut icon" href="/static/favicon.ico"></link>
+          {this.props.styleTags}
           <script dangerouslySetInnerHTML={{ __html: this.renderCustomScript() }} async defer/>
         </Head>
         <body>
