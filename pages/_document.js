@@ -22,12 +22,12 @@ class MyDocument extends Document {
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <meta name="description" content="张伟JS个人网站"/>
           <link rel="shortcut icon" href="/static/favicon.ico"></link>
-          <script dangerouslySetInnerHTML={{ __html: this.renderCustomScript() }}  async/>
+          <link href="https://cdn.bootcss.com/antd/3.12.3/antd.min.css" rel="stylesheet"></link>
+          <script dangerouslySetInnerHTML={{ __html: this.renderCustomScript() }} async/>
         </Head>
         <body>
           <Main />
-          <NextScript async/>
-          <link href="https://cdn.bootcss.com/antd/3.12.3/antd.min.css" rel="stylesheet" lazyload></link>
+          <NextScript/>
         </body>
       </html>
     );
