@@ -23,10 +23,10 @@ class MyDocument extends Document {
           <meta name="description" content="张伟JS个人网站"/>
           <link rel="shortcut icon" href="/static/favicon.ico"></link>
           <link href="https://cdn.bootcss.com/antd/3.12.3/antd.min.css" rel="stylesheet"></link>
-          <script dangerouslySetInnerHTML={{ __html: this.renderCustomScript() }} async/>
+          <script dangerouslySetInnerHTML={{ __html: this.renderCustomScript() }} async defer/>
         </Head>
         <body>
-          <Main />
+          {/* <Main /> */}
           <NextScript/>
         </body>
       </html>
