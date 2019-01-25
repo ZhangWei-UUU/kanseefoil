@@ -5,7 +5,6 @@ import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 import PropTypes from "prop-types";
 import request from "../Fetch/request";
-import "../../Style/course.css";
 import fake from "./model";
 
 @observer class addCustomer extends Component{
