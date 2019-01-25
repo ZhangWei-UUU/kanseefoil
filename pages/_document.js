@@ -1,11 +1,15 @@
 import React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
 import escape from "htmlescape";
+import { ServerStyleSheet } from "styled-components";
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const {loginUser} = ctx.req.session;
-    return { ...ctx,loginUser };
+  static getInitialProps ({ renderPage,req }) {
+    const sheet = new ServerStyleSheet();
+    const {loginUser} = req.session;
+    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
+    const styleTags = sheet.getStyleElement();
+    return { ...page, styleTags,loginUser  };
   }
     
   renderCustomScript () {
