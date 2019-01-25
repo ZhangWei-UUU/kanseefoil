@@ -27,6 +27,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript async/>
+          <link href="https://cdn.bootcss.com/antd/3.12.3/antd.min.css" rel="stylesheet" lazyload></link>
         </body>
       </html>
     );
