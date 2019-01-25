@@ -1,9 +1,6 @@
 import React,{Component} from "react";
 import { Menu } from "antd";
 import PropTypes from "prop-types";
-import Router from "next/router";
-
-import Link from "next/link";
 import "../../style.css";
 
 const { Item } = Menu;
@@ -39,16 +36,11 @@ class HeadNav extends Component{
             <Item key="right" style={{float:"right"}}>
               {loginUser?
                 <div>
-                  <Link  href="/usercenter">
-                    <a >{loginUser}</a> 
-                  </Link>
-                  | 
+                  <a href="/usercenter">{loginUser}</a>                   | 
                   <a onClick={this.logout}>退出</a>
                 </div>
                 :
-                <Link href="/login">
-                  <a >未登录</a>
-                </Link>
+                <a href="/login">未登录</a>
              
               }
             </Item>
