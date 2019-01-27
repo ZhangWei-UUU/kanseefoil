@@ -6,9 +6,9 @@ import { ServerStyleSheet } from "styled-components";
 class MyDocument extends Document {
   static getInitialProps ({ renderPage,req }) {
     const sheet = new ServerStyleSheet();
-    const {loginUser} = req.session;
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
     const styleTags = sheet.getStyleElement();
+    const {loginUser} = req.session;
     return { ...page, styleTags,loginUser  };
   }
     
