@@ -25,19 +25,19 @@ const ITEMS = [
 
   static getInitialProps(ctx){
     if(process.browser){
-      return {subitem: ctx.query.subitem || "mychannel"}; 
+      return {subitem: ctx.query.subitem || "mychannel",userName:ctx.userName,userId:ctx.userId}; 
     }else{
-      return {subitem:ctx.req.query.subitem || "mychannel"};   
+      return {subitem:ctx.req.query.subitem || "mychannel",userName:ctx.userName,userId:ctx.userId};   
     }
   }
     @observable userInfo = null;
 
     render(){
-      let {subitem,login} = this.props;
+      let {subitem,userName} = this.props;
       let DynamicComponent = MultiComponents[subitem];
       return(
         <Layout>
-          {/* <HeadNav themeStyle="light" loginUser={loginUser}/>  */}
+          <HeadNav themeStyle="light" userName={userName}/> 
           <Layout>
             <Sider>
               <Menu
@@ -72,8 +72,7 @@ const ITEMS = [
 
 UserCenter.propTypes = {
   subitem: PropTypes.string,
-  login:PropTypes.bool,
-  id:PropTypes.string
+  userName:PropTypes.string
 };
 
 export default withPrivate(UserCenter,{redirect:true});

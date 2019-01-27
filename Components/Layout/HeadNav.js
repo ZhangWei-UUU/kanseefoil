@@ -8,7 +8,7 @@ const { Item } = Menu;
 
 class HeadNav extends Component{
     logout = () =>{
-      fetch("/api/logout").then(res=>res.json()).then(data=>{
+      fetch("/api/authentication/logout").then(res=>res.json()).then(data=>{
         if(data.success){
           Router.push({ pathname:"/login"});  
         }
@@ -16,7 +16,7 @@ class HeadNav extends Component{
     }
  
     render(){
-      let { themeStyle,loginUser } = this.props;
+      let { themeStyle,userName } = this.props;
       return(
         <div>
           <Menu
@@ -35,9 +35,9 @@ class HeadNav extends Component{
               </a>
             </Item>
             <Item key="right" style={{float:"right"}}>
-              {loginUser?
+              {userName?
                 <div>
-                  <a href="/usercenter">{loginUser}</a>                   | 
+                  <a href="/usercenter">{userName}</a>                   | 
                   <a onClick={this.logout}>退出</a>
                 </div>
                 :
@@ -53,7 +53,7 @@ class HeadNav extends Component{
 
 HeadNav.propTypes = {
   themeStyle: PropTypes.string,
-  loginUser:PropTypes.string
+  userName:PropTypes.string
 };
 
 export default HeadNav;

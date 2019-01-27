@@ -42,9 +42,11 @@ router.post("/login",(req,res)=>{
 });
 
 router.get("/logout",(req,res)=>{
-  req.session.destroy((err)=>{
-    res.send({success:true});
-  });
+  request(`${BACK_END}/authentication/logout`).on("error",(err)=>{
+    res.statusCode = "500";
+    res.statusMessage = err;
+    res.end();
+  }).pipe(res);
 });
 
 router.get("/staticfile/:filename",(req,res)=>{

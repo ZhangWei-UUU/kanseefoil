@@ -9,20 +9,19 @@ export default (InputComp,custom) =>(
       if(process.browser){
         if(document.cookie){
           const result = parseCookies(document.cookie);
-          if(result.jwt){
-            return InputComp.getInitialProps({...ctx,login:true});
+          if(result.jwt && result.userName && result.userId){
+            return InputComp.getInitialProps({...ctx,userName:result.userName,userId:result.userId});
           }else{
             Router.push("/login");
           }
         }else{
-          Router.push("/login");
-          
+          Router.push("/login"); 
         } 
       }else{
-        if(ctx.req.cookies.jwt){
-          return InputComp.getInitialProps({...ctx,login:true});
+        if(ctx.req.cookies.jwt && ctx.req.cookies.userName){
+          return InputComp.getInitialProps({...ctx,userName:ctx.req.cookies.userName,userId:ctx.req.cookies.userId});
         }else{
-          res.redirect("/login");
+          ctx.res.redirect("/login");
         }
       }   
     }

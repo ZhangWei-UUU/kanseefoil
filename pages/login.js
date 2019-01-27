@@ -21,7 +21,7 @@ const FormItem = Form.Item;
       script.src = "/static/js/demo-1.js";
       setTimeout(()=>{
         document.body.appendChild(script);
-      },1000);
+      },2000);
    
     }
 
