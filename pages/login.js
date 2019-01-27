@@ -1,6 +1,8 @@
 import React,{Component} from "react";
 import { Input,Icon, Button,Form ,Alert,message} from "antd";
 import PropTypes from "prop-types";
+import Head from "next/head";
+import Link from "next/link";
 import request from "../Components/Fetch/request";
 
 import "../style.css";
@@ -14,6 +16,13 @@ class Login extends Component{
       loading:false,
       alert:null
     };
+  }
+
+  componentDidMount(){
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "/static/js/demo-1.js";
+    document.body.appendChild(script);
   }
     handleSubmit = (e) => {
       e.preventDefault();
@@ -50,7 +59,14 @@ class Login extends Component{
       let { loading,alert } = this.state;
       const { getFieldDecorator } = this.props.form;
       return(
-        <div className="login">
+        <div className="login" id="large-header" >
+          <Head>
+            <title>登录</title>
+            <script src="/static/js/TweenLite.min.js" async></script>
+            <script src="/static/js/EasePack.min.js" async></script>
+            <script src="/static/js/rAF.js" async></script>
+          </Head>
+          <canvas id="demo-canvas"></canvas>
           <div className="login-form">
             <div>
               <h1>登录 翰溪金箔</h1>
@@ -58,7 +74,7 @@ class Login extends Component{
             {alert?<Alert message={alert}
               type="error"
               showIcon/>:null}
-            <Form onSubmit={this.handleSubmit} className="login-form">
+            <Form onSubmit={this.handleSubmit}>
               <FormItem>
                 {getFieldDecorator("userName", {
                   rules: [{ required: true, message: "请输入用户名!" }],
@@ -84,7 +100,7 @@ class Login extends Component{
                   className="login-form-button">
                             登录
                 </Button>
-                <a href="/register"><a>立即注册</a></a>
+                <Link href="/register"><a>立即注册</a></Link>
               </FormItem>
             </Form>
             <div>

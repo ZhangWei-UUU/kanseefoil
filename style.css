@@ -168,12 +168,15 @@
 }
 
 .login-form {
+    right: 0;
+    top:0;
     text-align: center;
-    position: relative;
+    position: absolute;
     margin:100px auto;
     width: 500px;
     height: 500px;
     color:#fff;
+    z-index: 100;
 }
 
 .login-form h1 {
