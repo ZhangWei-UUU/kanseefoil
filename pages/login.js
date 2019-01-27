@@ -73,7 +73,7 @@ class Login extends Component{
           <canvas id="demo-canvas"></canvas>
           <div className="login-form">
             <div>
-              <h1>登录 翰溪金箔</h1>
+              <h1>登录 <i>KANSEE</i> 智能系统</h1>
             </div>
             {alert?<Alert message={alert}
               type="error"
