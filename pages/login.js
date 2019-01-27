@@ -22,8 +22,12 @@ class Login extends Component{
     const script = document.createElement("script");
     script.async = true;
     script.src = "/static/js/demo-1.js";
-    document.body.appendChild(script);
+    setTimeout(()=>{
+      document.body.appendChild(script);
+    },500);
+   
   }
+
     handleSubmit = (e) => {
       e.preventDefault();
       this.props.form.validateFields( async (err, values) => {
@@ -62,9 +66,9 @@ class Login extends Component{
         <div className="login" id="large-header" >
           <Head>
             <title>登录</title>
-            <script src="/static/js/TweenLite.min.js" async></script>
-            <script src="/static/js/EasePack.min.js" async></script>
-            <script src="/static/js/rAF.js" async></script>
+            <script src="/static/js/TweenLite.min.js"></script>
+            <script src="/static/js/EasePack.min.js"></script>
+            <script src="/static/js/rAF.js"></script>
           </Head>
           <canvas id="demo-canvas"></canvas>
           <div className="login-form">
