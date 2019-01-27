@@ -4,7 +4,6 @@ import { observer } from "mobx-react";
 import { observable, toJS } from "mobx";
 import PropTypes from "prop-types";
 import Link from "next/link";
-
 import HeadNav from "../Components/Layout/HeadNav";
 import FooterNav from "../Components/Layout/FooterNav";
 import MultiComponents from "../Components/Center";

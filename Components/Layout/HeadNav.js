@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import { Menu } from "antd";
+import Router from "next/router";
 import PropTypes from "prop-types";
 import "../../style.css";
 

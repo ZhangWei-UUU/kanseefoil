@@ -58,12 +58,12 @@ class Register extends Component{
         <div className="login">
           <div className="login-form">
             <div>
-              <h1>注册 翰溪订单管理系统</h1>
+              <h1>欢迎注册您的账户</h1>
             </div>
             {alert?<Alert message={alert}
               type="error"
               showIcon/>:null}
-            <Form onSubmit={this.handleSubmit} className="login-form">
+            <Form onSubmit={this.handleSubmit}>
               <FormItem>
                 {getFieldDecorator("userName", {
                   rules: [{ required: true, message: "请输入用户名!" }],

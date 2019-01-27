@@ -41,8 +41,6 @@ import fake from "./model";
       }catch(error){
         message.error(error.toString());
       }
-
-      console.log(data);
     }
     closeDrawer = () => {
       this.isDrawer = false;
