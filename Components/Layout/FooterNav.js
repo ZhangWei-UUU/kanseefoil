@@ -1,6 +1,4 @@
 import React,{Component} from "react";
-import { Row,Col } from "antd";
-
 import "../../style.css";
 
 class FooterNav extends Component{

@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React from "react";
 import NextDocument from "next/document";
 import Router from "next/router";
 import parseCookies from "./parseCookies";

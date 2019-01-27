@@ -1,7 +1,6 @@
 import React,{Component} from "react";
 import { Layout, Row, Col,Icon,Card } from "antd";
 import PropTypes from "prop-types";
-
 import HeadNav from "../Components/Layout/HeadNav";
 import FooterNav from "../Components/Layout/FooterNav";
 import withPrivate from "../Components/Authentication";

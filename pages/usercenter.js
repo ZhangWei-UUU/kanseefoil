@@ -8,7 +8,6 @@ import HeadNav from "../Components/Layout/HeadNav";
 import FooterNav from "../Components/Layout/FooterNav";
 import MultiComponents from "../Components/Center";
 import withPrivate from "../Components/Authentication";
-import request from "../Components/Fetch/request";
 
 import "../style.css";
 

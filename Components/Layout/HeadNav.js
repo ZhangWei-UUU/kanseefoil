@@ -42,7 +42,6 @@ class HeadNav extends Component{
                 </div>
                 :
                 <a href="/login">未登录</a>
-             
               }
             </Item>
           </Menu>
