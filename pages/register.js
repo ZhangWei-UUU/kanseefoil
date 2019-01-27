@@ -29,9 +29,8 @@ class Register extends Component{
             if(data.success){
               console.log(data.payload);
               message.success(data.message);
-              setTimeout(()=>{
-                Router.push("/login");
-              },1800);
+              Router.push("/login");
+             
             }else{
                         
               this.setState({

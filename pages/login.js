@@ -24,7 +24,7 @@ class Login extends Component{
     script.src = "/static/js/demo-1.js";
     setTimeout(()=>{
       document.body.appendChild(script);
-    },500);
+    },1000);
    
   }
 
