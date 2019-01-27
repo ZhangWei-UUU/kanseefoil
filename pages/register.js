@@ -2,56 +2,47 @@ import React,{Component} from "react";
 import Link from "next/link";
 import Router from "next/router";
 import PropTypes from "prop-types";
+import { observer } from "mobx-react";
+import { observable, toJS } from "mobx";
 import { Input,Icon, Button,Form ,Alert,message} from "antd";
 import request from "../Components/Fetch/request";
 import "../style.css";
 
 const FormItem = Form.Item;
 
-class Register extends Component{
-  constructor(props){
-    super(props);
-    this.state ={
-      loading:false,
-      alert:null
-    };
-  }
+@observer class Register extends Component{
+  @observable loading = false;
+  @observable alert = null;
+
     handleSubmit = (e) => {
       e.preventDefault();
       this.props.form.validateFields(async (err, values) => {
         if (!err) {
-          this.setState({
-            loading:true,
-            alert:null
-          });
+          this.loading = true;
+          this.alert = null;
+          let data;
           try{
-            const data =  await request("POST","/api/register",values);
-            if(data.success){
-              console.log(data.payload);
-              message.success(data.message);
-              Router.push("/login");
-             
-            }else{
-                        
-              this.setState({
-                alert:data.message
-              });
-            }
+            data =  await request("POST","/api/authentication/registry",values);
           }catch(e){
-            this.setState({
-              alert:e.message
-            });
+            this.alert = e.toString();   
           }finally{
-            this.setState({
-              loading:false
-            });
+            setTimeout(()=>{
+              this.loading = false;
+            },1500);
+          }
+          if(data&& data.n === 1&& data.ok ===1){
+            message.success("注册成功");
+            setTimeout(()=>{
+              Router.push("/login");
+            },1500);
+          }else{
+            message.success("注册失败，请检查您的网络是否正常连接");
           }
         }
       });
     }
 
     render(){
-      let { loading,alert } = this.state;
       const { getFieldDecorator } = this.props.form;
       return(
         <div className="login">
@@ -59,7 +50,7 @@ class Register extends Component{
             <div>
               <h1>欢迎注册您的账户</h1>
             </div>
-            {alert?<Alert message={alert}
+            {this.alert?<Alert message={this.alert}
               type="error"
               showIcon/>:null}
             <Form onSubmit={this.handleSubmit}>
@@ -83,16 +74,15 @@ class Register extends Component{
               </FormItem>
               <FormItem>
                 <Button htmlType="submit"
-                  disabled={ loading }
-                  loading={ loading }
+                  disabled={ this.loading }
+                  loading={ this.loading }
                   className="login-form-button">
                             注册 
                 </Button>
                 <Link href="/login"><a>已有账户，立即登录</a></Link>
               </FormItem>
             </Form>
-            <div>
-                        
+            <div>             
             </div>
           </div>
         </div>

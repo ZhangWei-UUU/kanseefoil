@@ -5,6 +5,7 @@ import Router from "next/router";
 export default (InputComp,custom) =>(
   class withPrivate extends NextDocument {
     static getInitialProps(ctx) {
+      console.log("xxxxx",ctx.req.cookies);
       if(process.browser){
         let {loginUser} = window.LOGIN_DATA;
         if(!loginUser){
@@ -12,7 +13,7 @@ export default (InputComp,custom) =>(
         }
         return InputComp.getInitialProps({...ctx,loginUser});
       }else{
-        let {loginUser} = ctx.req.session;
+        let loginUser = ctx.req.cookies;
         if(!loginUser && custom.redirect){
           let {res} = ctx;
           res.redirect("/login");

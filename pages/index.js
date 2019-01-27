@@ -16,7 +16,7 @@ import "../style.css";
       if(process.browser){
         return {loginUser:window.LOGIN_DATA.loginUser};
       }else{
-        return {loginUser:ctx.req.session.loginUser};   
+        return {loginUser:ctx.req.cookies};   
       }
     }
     

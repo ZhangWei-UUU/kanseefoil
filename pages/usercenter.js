@@ -25,10 +25,9 @@ const ITEMS = [
 
   static getInitialProps(ctx){
     if(process.browser){
-      console.log(ctx);
       return {subitem: ctx.query.subitem || "mychannel",loginUser:ctx.loginUser,id:ctx.query.id || ""}; 
     }else{
-      return {subitem:ctx.req.query.subitem || "mychannel",loginUser:ctx.req.session.loginUser,id:ctx.req.query.id || ""};   
+      return {subitem:ctx.req.query.subitem || "mychannel",loginUser:ctx.req.cookies,id:ctx.req.query.id || ""};   
     }
   }
     @observable userInfo = null;
