@@ -3,7 +3,7 @@ var router = express.Router();
 const request = require("request");
 
 router.get("/:id",(req,res)=>{
-  request(`${BACKEND}/customer/${req.params.id}`).on("error",(err)=>{
+  request(`${BACK_END}/customer/${req.params.id}`).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;
     res.end();

@@ -5,19 +5,31 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
-import dynamic from "next/dynamic";
-import withPrivate from "../Components/Authentication";
-import HeadNav from "../Components/Layout/HeadNav";
+import parseCookies from "../Components/Authentication/parseCookies";
 import "../style.css";
 
 @observer class Home extends Component{
     @observable list = []
     static getInitialProps(ctx){
       if(process.browser){
-        return {loginUser:window.LOGIN_DATA.loginUser};
+        if(document.cookie){
+          const result = parseCookies(document.cookie);
+          if(result.jwt){
+            return {login:true};
+          }else{
+            return {login:false};
+          }
+        }else{
+          return {login:false};
+        }
       }else{
-        return {loginUser:ctx.req.cookies};   
+        if(ctx.req.cookies.jwt){
+          return {login:true};
+        }else{
+          return {login:false};
+        }
       }
+     
     }
     
     componentDidMount(){
@@ -147,13 +159,22 @@ import "../style.css";
               <Col lg={{span:8,offset:8}} md={{span:12,offset:6}}>
                 <h1 style={{color:"#fff",marginTop:"300px",textAlign:"center",fontSize:"60px"}}>Kansee · 翰溪<br/>智能管理系统</h1>
                 <center>
-                  <Link href="/login">
-                    <a style={{border:"1px solid #fff",
-                      borderRadius:"8px",padding:"5px 10px",
-                      margin:"10px auto",
-                      color:"#fff",fontSize:"20px"}}>点击登录
-                    </a>
-                  </Link>
+                  {this.props.login?
+                    <Link href="/usercenter">
+                      <a style={{border:"1px solid #fff",
+                        borderRadius:"8px",padding:"5px 10px",
+                        margin:"10px auto",
+                        color:"#fff",fontSize:"20px"}}>进入控制台
+                      </a>
+                    </Link>
+                    : <Link href="/login">
+                      <a style={{border:"1px solid #fff",
+                        borderRadius:"8px",padding:"5px 10px",
+                        margin:"10px auto",
+                        color:"#fff",fontSize:"20px"}}>点击登录
+                      </a>
+                    </Link>}
+                 
                 </center>
               </Col>
             </Row>
@@ -169,7 +190,7 @@ import "../style.css";
 };
 
 Home.propTypes = {
-  loginUser:PropTypes.string
+  login:PropTypes.bool
 };
 
-export default withPrivate(Home,{redirect:false});
+export default Home;

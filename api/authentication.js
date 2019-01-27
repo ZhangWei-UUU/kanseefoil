@@ -60,7 +60,7 @@ router.get("/staticfile/:filename",(req,res)=>{
 // 添加新客户
 router.post("/customer",(req,res)=>{
   const options = {
-    url: `${BACKEND}/customer`,
+    url: `${BACK_END}/customer`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(req.body)
@@ -74,7 +74,7 @@ router.post("/customer",(req,res)=>{
 
 // 获取全部客户数据
 router.get("/customer/:id",(req,res)=>{
-  request(`${BACKEND}/customer/${req.params.id}`).on("error",(err)=>{
+  request(`${BACK_END}/customer/${req.params.id}`).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;
     res.end();
@@ -83,7 +83,7 @@ router.get("/customer/:id",(req,res)=>{
 
 // 删除客户数据
 router.delete("/customer/:id",(req,res)=>{
-  request.del(`${BACKEND}/customer/${req.params.id}`).on("error",(err)=>{
+  request.del(`${BACK_END}/customer/${req.params.id}`).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;
     res.end();

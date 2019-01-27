@@ -42,7 +42,6 @@ const FormItem = Form.Item;
             },1500);
           }
           if(data.success){
-            window.LOGIN_DATA = document.cookie;
             window.location.href="/usercenter";
           }else{
             this.alert = data.result;
@@ -95,7 +94,8 @@ const FormItem = Form.Item;
                   className="login-form-button">
                             登录
                 </Button>
-                <Link href="/register"><a>立即注册</a></Link>
+                <Link href="/register"><a>立即注册</a></Link> | 
+                <Link href="/"><a> 返回首页</a></Link>
               </FormItem>
             </Form>
             <div>

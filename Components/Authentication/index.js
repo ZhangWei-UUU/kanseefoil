@@ -1,29 +1,33 @@
 import React,{Component} from "react";
 import NextDocument from "next/document";
 import Router from "next/router";
+import parseCookies from "./parseCookies";
 
 export default (InputComp,custom) =>(
   class withPrivate extends NextDocument {
     static getInitialProps(ctx) {
-      console.log("xxxxx",ctx.req.cookies);
       if(process.browser){
-        let {loginUser} = window.LOGIN_DATA;
-        if(!loginUser){
+        if(document.cookie){
+          const result = parseCookies(document.cookie);
+          if(result.jwt){
+            return InputComp.getInitialProps({...ctx,login:true});
+          }else{
+            Router.push("/login");
+          }
+        }else{
           Router.push("/login");
-        }
-        return InputComp.getInitialProps({...ctx,loginUser});
+          
+        } 
       }else{
-        let loginUser = ctx.req.cookies;
-        if(!loginUser && custom.redirect){
-          let {res} = ctx;
+        if(ctx.req.cookies.jwt){
+          return InputComp.getInitialProps({...ctx,login:true});
+        }else{
           res.redirect("/login");
         }
-        return InputComp.getInitialProps({...ctx,loginUser});
       }   
     }
        
-    render(){
-            
+    render(){     
       return <InputComp {...this.props}/>;
     }
   }

@@ -25,40 +25,19 @@ const ITEMS = [
 
   static getInitialProps(ctx){
     if(process.browser){
-      return {subitem: ctx.query.subitem || "mychannel",loginUser:ctx.loginUser,id:ctx.query.id || ""}; 
+      return {subitem: ctx.query.subitem || "mychannel"}; 
     }else{
-      return {subitem:ctx.req.query.subitem || "mychannel",loginUser:ctx.req.cookies,id:ctx.req.query.id || ""};   
+      return {subitem:ctx.req.query.subitem || "mychannel"};   
     }
   }
     @observable userInfo = null;
 
-    async componentDidMount() {
-      let data;
-      try{
-        data = await request("GET", "/api/currentUserInfo");  
-      }catch(error){
-        message.error(error);
-      }
-      this.userInfo = data.payload;
-    }
-
-    update = async ()=>{
-      let data;
-      try{
-        data = await request("GET", "/api/currentUserInfo");  
-      }catch(error){
-        message.error(error);
-      }
-      this.userInfo = data.payload;
-    }
-
     render(){
-      let {subitem,loginUser} = this.props;
+      let {subitem,login} = this.props;
       let DynamicComponent = MultiComponents[subitem];
-
       return(
         <Layout>
-          <HeadNav themeStyle="light" loginUser={loginUser}/> 
+          {/* <HeadNav themeStyle="light" loginUser={loginUser}/>  */}
           <Layout>
             <Sider>
               <Menu
@@ -82,7 +61,7 @@ const ITEMS = [
               </Menu>
             </Sider>
             <Content>
-              {this.userInfo?<DynamicComponent userInfo={toJS(this.userInfo)} update={this.update} id={this.props.id}/>:null}
+              <DynamicComponent/>
             </Content>  
           </Layout>
           <FooterNav /> 
@@ -93,7 +72,7 @@ const ITEMS = [
 
 UserCenter.propTypes = {
   subitem: PropTypes.string,
-  loginUser:PropTypes.string,
+  login:PropTypes.bool,
   id:PropTypes.string
 };
 
