@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col,Card, Input,Button,Form,Upload,Icon,Tree,Tag,Alert,Tooltip } from "antd";
+import { Card,Button,Form,Upload,Icon,Alert,Divider } from "antd";
 import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 import PropTypes from "prop-types";
@@ -73,118 +73,53 @@ const formItemLayout = {
 
      return(
        <div>
-         <Card title="新增课程" 
+         <Card title="账户信息" 
            bordered={false} 
-           className="course-card"
+           style={{width:"720px",margin:"20px auto"}}
          >
            {this.formStatus === "error"?<Alert message="新增课程失败" type="error" showIcon />:null}
            
            <Form onSubmit={this.handleSubmit}>
              <FormItem
                {...formItemLayout}
-               label="课程名称"
-             >
-               {getFieldDecorator("couseName", {
-                 rules: [ {
-                   required: true, message: "请填写课程名称!",
-                 }],
-               })(
-                 <Input />
-               )}
-             </FormItem>
-          
-
-             <FormItem
-               {...formItemLayout}
-               label="上传课程主题图片"
+               label="头像"
              >
                <div className="dropbox">
                  {getFieldDecorator("dragger", {
                    valuePropName: "fileList",
                    getValueFromEvent: this.normFile,
                  })(
-                   <Upload.Dragger name="files" action="/upload.do">
-                     <p className="ant-upload-drag-icon">
-                       <Icon type="inbox" />
+                   <Upload name="files" action="/upload.do" 
+                   >
+                     <p>
+                       支持 jpg、png 格式大小 2M 以内的图片
                      </p>
-                     <p className="ant-upload-text">点击或将文件拖拽到此处</p>
-                     <p className="ant-upload-hint">支持批量文件上传</p>
-                   </Upload.Dragger>
+                     <Button type="primary">
+                       <Icon type="inbox" /> 修改头像                    
+                     </Button> 
+                   </Upload>
                  )}
                </div>
              </FormItem>
+             <Divider/>
              <FormItem
                {...formItemLayout}
-               label="关卡设置"
-             >
-               {
-                 this.tags.map((tag, index) => {
-                   const isLongTag = this.tags.length > 3;
-                   const tagElem = (
-                     <Tag key={tag} 
-                       closable={index !== 0} 
-                       afterClose={() => this.handleClose(tag)}>
-                       {isLongTag ? `${tag.slice(0, 20)}...` : tag}
-                     </Tag>
-                   );
-                   return isLongTag ? 
-                     <Tooltip title={tag} key={tag}>
-                       {tagElem}
-                     </Tooltip> : tagElem;
-                 })
-               }
-               {this.inputVisible && (
-                 <Input
-                   ref={this.saveInputRef}
-                   type="text"
-                   size="small"
-                   style={{ width: 78 }}
-                   value={this.inputValue}
-                   onChange={this.handleInputChange}
-                   onBlur={this.handleInputConfirm}
-                   onPressEnter={this.handleInputConfirm}
-                 />
-               )}
-               {!this.inputVisible && (
-                 <Tag
-                   onClick={this.showInput}
-                   style={{ background: "#fff", borderStyle: "dashed" }}
-                 >
-                   <Icon type="plus" /> 添加步骤
-                 </Tag>
-               )}
-             </FormItem>
-             <FormItem
-               {...formItemLayout}
-               label="目录设置"
+               label="公司名称"
              >
                <span className="ant-form-text">China</span>
              </FormItem>
+             <Divider/>
              <FormItem
                {...formItemLayout}
-               label="父级科目"
+               label="职位"
              >
                <span className="ant-form-text">China</span>
              </FormItem>
+             <Divider/>
              <FormItem>
                <Button type="primary" htmlType="submit" className="course-btn">确认提交</Button>
              </FormItem>
            </Form>
-         </Card>
-
-
-         <Card title="个人账户" 
-           bordered={false} 
-           className="course-card"
-         >
-           <Row>
-             <Col xl={12}>
-               <Input placeholder="填写新密码"/>
-             </Col>
-             <Col xl={10} offset={2}>
-               <Button type="primary">提交修改</Button>
-             </Col>
-           </Row>
          </Card>
        </div>
      );

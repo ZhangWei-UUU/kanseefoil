@@ -5,7 +5,6 @@ import { observable, toJS } from "mobx";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import HeadNav from "../Components/Layout/HeadNav";
-import FooterNav from "../Components/Layout/FooterNav";
 import MultiComponents from "../Components/Center";
 import withPrivate from "../Components/Authentication";
 
@@ -63,7 +62,6 @@ const ITEMS = [
               <DynamicComponent/>
             </Content>  
           </Layout>
-          <FooterNav /> 
         </Layout>
       );
     }
