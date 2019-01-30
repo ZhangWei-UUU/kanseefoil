@@ -50,7 +50,7 @@ import fake from "./model";
             }finally{
               this.loading =false;
             }
-            if(res.ok === 1 && res.n ===1){
+            if(res.ok && res.n &&res.ok === 1 && res.n ===1){
               message.success("添加成功");
               this.props.form.resetFields();
             }else{

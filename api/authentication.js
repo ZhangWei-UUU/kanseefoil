@@ -1,10 +1,12 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const request = require("request");
-var hash = require("hash.js");
-
+const hash = require("hash.js");
+const multer = require("multer");
+var j = request.jar();
+var requestapi = request.defaults({jar:j});
 const {BACK_END} = process.env;
-
+var requestapi = request.defaults({jar: true});
 router.post("/registry",(req,res)=>{
   let user = {};
   user.userName = req.body.userName;
@@ -16,7 +18,7 @@ router.post("/registry",(req,res)=>{
     body: JSON.stringify(user)
   };
 
-  request.post(options).on("error",(err)=>{
+  requestapi.post(options).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;
     res.end();
@@ -32,9 +34,10 @@ router.post("/login",(req,res)=>{
     url: `${BACK_END}/authentication/login`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user)
+    body: JSON.stringify(user),
+    jar:true
   };
-  request.post(options).on("error",(err)=>{
+  requestapi.post(options).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;
     res.end();
@@ -42,55 +45,40 @@ router.post("/login",(req,res)=>{
 });
 
 router.get("/logout",(req,res)=>{
-  request(`${BACK_END}/authentication/logout`).on("error",(err)=>{
+  requestapi(`${BACK_END}/authentication/logout`).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;
     res.end();
   }).pipe(res);
 });
 
-router.get("/staticfile/:filename",(req,res)=>{
-  const exist = fs.existsSync(`./Files/${req.params.filename}.md`);
-  if(exist){
-    const content = fs.readFileSync(`./Files/${req.params.filename}.md`,"utf8");
-    res.send({content});
-  }else{
-    res.send({error:"无此文件"});
-  }
-});
-
-// 添加新客户
-router.post("/customer",(req,res)=>{
-  const options = {
-    url: `${BACK_END}/customer`,
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(req.body)
+router.post("/uploadUserHeader",multer().any(),(req,res)=>{
+  const formData = {
+    file: {
+      value: req.files[0].buffer,
+      options: {
+        filename: req.files[0].originalname,
+        contentType: req.files[0].mimetype
+      }
+    }
   };
-  request.post(options).on("error",(err)=>{
+  const options = {
+    url: `${BACK_END}/authentication/uploadUserHeader`,
+    method: "POST",
+    timeout: 10000,
+    formData,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
+  };
+
+  requestapi.post(options).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;
     res.end();
   }).pipe(res);
 });
 
-// 获取全部客户数据
-router.get("/customer/:id",(req,res)=>{
-  request(`${BACK_END}/customer/${req.params.id}`).on("error",(err)=>{
-    res.statusCode = "500";
-    res.statusMessage = err;
-    res.end();
-  }).pipe(res);
-});
-
-// 删除客户数据
-router.delete("/customer/:id",(req,res)=>{
-  request.del(`${BACK_END}/customer/${req.params.id}`).on("error",(err)=>{
-    res.statusCode = "500";
-    res.statusMessage = err;
-    res.end();
-  }).pipe(res);
-});
 
 
 

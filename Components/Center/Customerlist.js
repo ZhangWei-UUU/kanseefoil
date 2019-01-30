@@ -16,11 +16,11 @@ import "../../Style/course.css";
     getList = async () =>{
       let data;
       try{
-        data = await request("GET", "/api/customer/all");  
+        data = await request("GET", "/api/partners/all");  
       }catch(error){
         message.error(error.toString());
       }
-  
+      console.log(data);
       if(data && data.length>0){
         this.dataSource = data.reverse();
       }
