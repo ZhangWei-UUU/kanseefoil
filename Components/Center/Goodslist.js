@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import { Button, Table,message,Icon } from "antd";
+import { Button, Table,message,Icon,notification,Tag } from "antd";
 import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 import PropTypes from "prop-types";
@@ -14,15 +14,22 @@ import "../../Style/course.css";
     }
     
     getList = async () =>{
-      let data;
+      let res;
       try{
-        data = await request("GET", "/api/customer/all");  
+        res = await request("GET", "/api/product/all");  
       }catch(error){
         message.error(error.toString());
       }
   
-      if(data && data.length>0){
-        this.dataSource = data.reverse();
+      if(res.success && res.result){
+        if(res.result.length>0){
+          this.dataSource = res.result;
+        }
+      }else{
+        notification["error"]({
+          message: "产品列表加载失败，请检查您的网络是否正常",
+          style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
+        });
       }
     }
 
@@ -43,15 +50,37 @@ import "../../Style/course.css";
     
     render(){
       const columns = [
-        {key:3, title:"商品编号",dataIndex:"_id"},
         {key:1, title:"产品名称",dataIndex:"name",render:(ele,proxy)=>
           <Link href={`/usercenter?subitem=goods&id=${proxy._id}`}>
             <a>{ele}</a>
           </Link>},
-        {key:2, title:"产品型号",dataIndex:"address"},
-        {key:4, title:"颜色",dataIndex:"contactors",render:(ele)=>ele && ele.length>0?ele[0].name:"无"},
-        {key:5, title:"尺寸",dataIndex:"contactors",render:(ele)=>ele && ele.length>0?ele[0].tel:"无"},
-        {key:6, title:"价格",dataIndex:"contactors",render:(ele)=>ele && ele.length>0?ele[0].tel:"无"},
+        {key:4, title:"颜色",dataIndex:"color",
+          render:(colors)=>{
+            return colors.map((color,key)=>{
+              return(
+                <Tag key={key} color={color}>{color}</Tag>
+              );
+            });
+          }
+        },
+        {key:5, title:"尺寸",dataIndex:"size",
+          render:(colors)=>{
+            return colors.map((color,key)=>{
+              return(
+                <Tag key={key} color={"green"}>{color}</Tag>
+              );
+            });
+          }
+        },
+        {key:6, title:"价格",dataIndex:"price",
+          render:(colors)=>{
+            return colors.map((price,key)=>{
+              return(
+                <Tag key={key} color={"red"}>{price.count}</Tag>
+              );
+            });
+          }
+        },
         {key:7, title:"操作",dataIndex:"handle",render:(ele,proxy)=>{
           return(<a onClick={()=>this.delete(proxy._id)}><Icon type="delete"/></a>);
         }},

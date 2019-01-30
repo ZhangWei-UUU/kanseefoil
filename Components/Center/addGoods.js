@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import {  Upload, Icon,Breadcrumb,Row,Col,Divider, Form, Tag,Modal,Input } from "antd";
+import {  Upload, Icon,Breadcrumb,Row,Col,Divider, Form, Tag,Modal,Input,notification } from "antd";
 import { observer } from "mobx-react";
 import { observable} from "mobx";
 import PropTypes from "prop-types";
@@ -30,7 +30,35 @@ const product = {
         url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
       }],
     };
-    
+
+    submit = async () => {
+      const FAKE_PRODUCT = {
+        name:"小米手机"+Math.random(), 
+        size:["120米","240米"], 
+        color:["red","blue"], 
+        suited:["纸张","塑料","皮革"],
+        machines:["自动滚烫机","手动烫印机"],
+        price:[{id:1,count:999},{id:2,count:1999},{id:3,count:2999}],
+        creator:document.cookie.userId
+      };
+      let res;
+      try{
+        res = await request("POST", "/api/product/",FAKE_PRODUCT);  
+      }catch(error){
+        message.error(error.toString());
+      }
+      if(res.success){
+        notification["success"]({
+          message: "产品添加成功",
+          style:{background:"#c3f0ad",color:"#fff",border:"1px solid #52c41a"}
+        });
+      }else{
+        notification.open({
+          message: "产品添加失败",
+        });
+      }
+    }
+
       handleCancel = () => {
         this.uploadstate.previewVisible= false;
       }
@@ -54,12 +82,9 @@ const product = {
         callback(undefined);
       }
     }
-    handleSubmit = (e) => {
-      e.preventDefault();
-      this.props.form.validateFields(async (err, values) => {
-       
-      });
-    }
+    
+   
+    
 
     render(){
       const uploadButton = (
@@ -86,7 +111,6 @@ const product = {
             <Divider/>
             <Row gutter={16}>
               <Col span={10}>
-
                 <div style={{width:"100%"}}>
                   <Upload
                     action="//jsonplaceholder.typicode.com/posts/"
@@ -170,7 +194,7 @@ const product = {
                     
                   </Row>
                   <Row>
-                    <button className="goods-btn-empty">信息已确认，提交</button>
+                    <button className="goods-btn-empty" onClick={this.submit}>信息已确认，提交</button>
                   </Row>
                 </div>
               </Col>

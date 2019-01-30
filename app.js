@@ -9,6 +9,8 @@ var configure = require("./configure/index.js");
 var app = next({dev});
 var authentication = require("./api/authentication.js");
 var order = require("./api/order.js");
+var product = require("./api/product.js");
+
 var partners = require("./api/partners.js");
 
 const handle = app.getRequestHandler();
@@ -23,6 +25,7 @@ server.use(cookieParser());
 server.use(compression());
 server.use("/api/authentication",authentication);
 server.use("/api/order",order);
+server.use("/api/product",product);
 server.use("/api/partners",partners);
 server.use(function (req, res, next) {
   return next();
