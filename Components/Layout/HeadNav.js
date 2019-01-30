@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import { Menu } from "antd";
+import Link from "next/link";
 import Router from "next/router";
 import PropTypes from "prop-types";
 import "../../style.css";
@@ -33,6 +34,9 @@ class HeadNav extends Component{
                   }>KANSEE 金箔</p>
                 </div>
               </a>
+            </Item>
+            <Item key="market" >
+              <Link href="/market"><a>商城</a></Link>
             </Item>
             <Item key="right" style={{float:"right"}}>
               {userName?

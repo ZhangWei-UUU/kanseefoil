@@ -36,7 +36,7 @@ import "../../Style/course.css";
     delete = async (_id) => {
       let res;
       try{
-        res = await request("DELETE", `/api/customer/${_id}`);  
+        res = await request("DELETE", `/api/product/${_id}`);  
       }catch(error){
         message.error(error.toString());
       }

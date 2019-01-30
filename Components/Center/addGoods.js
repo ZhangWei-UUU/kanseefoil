@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import {  Upload, Icon,Breadcrumb,Row,Col,Divider, Form, Tag,Modal,Input,notification } from "antd";
+import { Icon,Breadcrumb,Row,Col,Divider, Form, Tag,Modal,Input,notification } from "antd";
 import { observer } from "mobx-react";
 import { observable} from "mobx";
+
 import PropTypes from "prop-types";
+import ProductUpload from "./ProductUpload";
+
 import request from "../Fetch/request";
 import "../../Style/course.css";
 import fake from "./model";
@@ -59,14 +62,6 @@ const product = {
       }
     }
 
-      handleCancel = () => {
-        this.uploadstate.previewVisible= false;
-      }
-    
-      handlePreview = (file) => {
-        this.uploadstate.previewImage=file.url || file.thumbUrl;
-        this.uploadstate.previewVisible=true;
-      }
     checkPublicCode = (rule, value, callback) => {
       if(value && value.length>16 && value.length !== 18 ){
         callback("统一社会信用代码长度为18位");
@@ -82,17 +77,8 @@ const product = {
         callback(undefined);
       }
     }
-    
-   
-    
 
     render(){
-      const uploadButton = (
-        <div>
-          <Icon type="plus" />
-          <div className="ant-upload-text">Upload</div>
-        </div>
-      );
       return(
         <div>
           <div style={{margin:"30px auto",width:"1100px",background:"#fff",height:"900px",padding:"50px"}}>
@@ -111,20 +97,7 @@ const product = {
             <Divider/>
             <Row gutter={16}>
               <Col span={10}>
-                <div style={{width:"100%"}}>
-                  <Upload
-                    action="//jsonplaceholder.typicode.com/posts/"
-                    listType="picture-card"
-                    fileList={this.uploadstate.fileList}
-                    onPreview={this.uploadstate.handlePreview}
-                    onChange={this.uploadstate.handleChange}
-                  >
-                    {this.uploadstate.fileList.length >= 3 ? null : uploadButton}
-                  </Upload>
-                  <Modal visible={this.previewVisible} footer={null} onCancel={this.handleCancel}>
-                    <img alt="example" style={{ width: "100%" }} src={this.previewImage} />
-                  </Modal>
-                </div>
+                <ProductUpload/>
               </Col>
               <Col span={14}>
                 <h3>

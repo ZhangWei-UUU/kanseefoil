@@ -281,4 +281,23 @@
     height: 30px;
     line-height: 30px;
     min-width: 50px;
+    
+}
+
+.list-product-picture {
+    background: #fff;
+    height: 300px;
+    text-align: center;
+}
+
+.list-product-picture:hover{
+    cursor: pointer;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+.list-product-picture img {
+    height: 200px;
+    width: 100%;
+    border:none;
+    margin-bottom: 8px;
 }
