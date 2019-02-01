@@ -6,6 +6,7 @@ import { observable,toJS} from "mobx";
 import PropTypes from "prop-types";
 import request from "../Fetch/request";
 import "../../Style/course.css";
+import {COLORS_CONVERT,METIRAILS_CONVERT} from "../../Translator";
 
 @observer class Goodslist extends Component{
     @observable dataSource = [];
@@ -44,41 +45,47 @@ import "../../Style/course.css";
         message.success("删除成功");
         this.getList();
       }else{
-        message.error("删除失败，请检查网");
+        message.error("删除失败，请检查网络是否正常");
       }
     }
     
     render(){
+      console.log(toJS(this.dataSource));
       const columns = [
         {key:1, title:"产品名称",dataIndex:"name",render:(ele,proxy)=>
           <Link href={`/usercenter?subitem=goods&id=${proxy._id}`}>
             <a>{ele}</a>
           </Link>},
-        {key:4, title:"颜色",dataIndex:"color",
+        {key:2, title:"使用范围",dataIndex:"suited",
+          render:(suited)=>{
+            return suited.map((s,key)=>{
+              return(
+                <Tag key={key} color="#000">{METIRAILS_CONVERT[s]}</Tag>
+              );
+            });
+          }
+        },
+        {key:4, title:"颜色",dataIndex:"colors",
           render:(colors)=>{
             return colors.map((color,key)=>{
               return(
-                <Tag key={key} color={color}>{color}</Tag>
+                <Tag key={key} color={color}>{COLORS_CONVERT[color]}</Tag>
               );
             });
           }
         },
         {key:5, title:"尺寸",dataIndex:"size",
-          render:(colors)=>{
-            return colors.map((color,key)=>{
+          render:(size)=>{
+            return size.map((s,key)=>{
               return(
-                <Tag key={key} color={"green"}>{color}</Tag>
+                <Tag key={key} color={"#000"}>{s}米</Tag>
               );
             });
           }
         },
         {key:6, title:"价格",dataIndex:"price",
-          render:(colors)=>{
-            return colors.map((price,key)=>{
-              return(
-                <Tag key={key} color={"red"}>{price.count}</Tag>
-              );
-            });
+          render:(price)=>{
+            return <strong style={{color:"red"}}>{"￥"+price}</strong>;
           }
         },
         {key:7, title:"操作",dataIndex:"handle",render:(ele,proxy)=>{

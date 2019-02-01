@@ -2,51 +2,63 @@ import React, { Component } from "react";
 import Link from "next/link";
 import { Icon,Breadcrumb,Row,Col,Divider, Form, Tag,Modal,Input,notification } from "antd";
 import { observer } from "mobx-react";
-import { observable} from "mobx";
+import { observable,toJS} from "mobx";
 
 import PropTypes from "prop-types";
 import ProductUpload from "./ProductUpload";
 
 import request from "../Fetch/request";
 import "../../Style/course.css";
-import fake from "./model";
+import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translator";
 
-const product = {
-  pictures:["/static/images/test-goods.png"],
-  name: "Xiaomi/小米 小米8年度旗舰全面屏骁龙845处理器官方正品智能手机",
-  price:2200,
-  size:["120米","240米"],
-  colors:["red","black","golden","white","blue"],
-  machines:["自动滚烫机","手动烫印机"],
-  materials:["纸张","塑料","皮革"]
-};
+
+
 
 @observer class addGoods extends Component{
-    @observable loading = false;
-    @observable uploadstate = {
-      previewVisible: false,
-      previewImage: "",
-      fileList: [{
-        uid: "-1",
-        name: "xxx.png",
-        status: "done",
-        url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      }],
-    };
+    @observable name = "";
+    @observable size = [120,240];
+    @observable colors = ["red","blue","gold"];
+    @observable suited = ["paper","lether","pet"];
+    @observable machines = ["auto","non_auto"];
+    @observable price = 999;
+    @observable mainpicture = null;
+    
+    updateImage = (param) => {
+      this.mainpicture = param;
+    }
+    
+    changeName = (e) => {
+      this.name = e.target.value;
+    }
 
+    changePrice = (e) => {
+      this.price = e.target.value;
+    }
+
+    reduceSizes = (value) => {
+      const newarray = this.colors.filter(tag => tag !== value);
+          
+      this.size= newarray;
+    }
+
+    reduceColors = (value) => {
+      const newarray = this.colors.filter(tag => tag !== value);
+          
+      this.colors = newarray;
+    }
     submit = async () => {
-      const FAKE_PRODUCT = {
-        name:"小米手机"+Math.random(), 
-        size:["120米","240米"], 
-        color:["red","blue"], 
-        suited:["纸张","塑料","皮革"],
-        machines:["自动滚烫机","手动烫印机"],
-        price:[{id:1,count:999},{id:2,count:1999},{id:3,count:2999}],
-        creator:document.cookie.userId
+      const product = {
+        name:this.name, 
+        size:toJS(this.size), 
+        colors:toJS(this.colors), 
+        suited:toJS(this.suited), 
+        machines:toJS(this.machines),
+        mainpicture:this.mainpicture,
+        price:this.price
       };
       let res;
       try{
-        res = await request("POST", "/api/product/",FAKE_PRODUCT);  
+        res = await request("POST", "/api/product/",product);  
       }catch(error){
         message.error(error.toString());
       }
@@ -59,22 +71,6 @@ const product = {
         notification.open({
           message: "产品添加失败",
         });
-      }
-    }
-
-    checkPublicCode = (rule, value, callback) => {
-      if(value && value.length>16 && value.length !== 18 ){
-        callback("统一社会信用代码长度为18位");
-      }else{
-        callback(undefined);
-      }
-    }
-    
-    checkTel = (rule, value, callback) => {
-      if(value && value.length>10 && value.length !== 11){
-        callback("电话号码长度为11位");
-      }else{
-        callback(undefined);
       }
     }
 
@@ -97,30 +93,47 @@ const product = {
             <Divider/>
             <Row gutter={16}>
               <Col span={10}>
-                <ProductUpload/>
+                <ProductUpload mainpicture={this.mainpicture} callback={this.updateImage}/>
               </Col>
               <Col span={14}>
                 <h3>
-                  <Input placeholder="产品名称及相关型号名" style={{color:"#000",fontWeight:"bolder"}}/>
+                  <input placeholder="产品名称及相关型号名" 
+                    value = {this.name}
+                    onChange={this.changeName}
+                    style={{color:"#000",
+                      fontSize:"27px",
+                      outline:"none",
+                      border:"none",
+                      borderBottom:"2px solid #ccc",
+                      fontWeight:"bolder"}}/>
                 </h3>
                 <div className="goods-header">
                   <Row>
                     <Col span={6}>
-                  价格
+                     基础价格
                     </Col>
                     <Col span={18}>
                       <h2 style={{color:"red"}}>
-                    ￥{product.price}
+                    ￥<input value={this.price} 
+                          onChange={this.changePrice}
+                          style={{
+                            outline:"none",
+                            border:"none",
+                            background:"none",
+                            borderBottom:"1px solid red",
+                            fontWeight:"bolder"}}/>
                       </h2>
                     </Col>
                   </Row>
                   <Row  style={{margin:"10px auto"}}>
                     <Col span={4}>尺寸</Col>
-                    {product.size.map((s,key)=>{
+                    {this.size.map((s,key)=>{
                       return(
                         <Col span={4} key={key}>
-                          <Tag closable className="goods-tag">
-                            {s}
+                          <Tag closable={this.size.length ===1?false:true}
+                            color="#000" 
+                            onClose={()=>this.reduceSizes(s)}>
+                            {s}米
                           </Tag>
                         </Col>
                       );
@@ -128,11 +141,13 @@ const product = {
                   </Row>
                   <Row style={{margin:"10px auto"}}>
                     <Col span={4}>颜色</Col>
-                    {product.colors.map((s,key)=>{
+                    {this.colors.map((color,key)=>{
                       return(
                         <Col span={4} key={key}>
-                          <Tag closable className="goods-tag">
-                            {s}
+                          <Tag closable={this.colors.length ===1?false:true}
+                            onClose={()=>this.reduceColors(color)}
+                            color={color}>
+                            {COLORS_CONVERT[color]}
                           </Tag>
                         </Col>
                       );
@@ -140,11 +155,11 @@ const product = {
                   </Row>
                   <Row style={{margin:"20px auto"}}>
                     <Col span={4}>适用材质</Col>
-                    {product.materials.map((s,key)=>{
+                    {this.suited.map((s,key)=>{
                       return(
                         <Col span={3} key={key}>
-                          <Tag color="red" closable>
-                            {s}
+                          <Tag color="#000" closable>
+                            {METIRAILS_CONVERT[s]}
                           </Tag>
                         </Col>
                       );
@@ -152,19 +167,15 @@ const product = {
                   </Row>
                   <Row style={{margin:"20px auto"}}>
                     <Col span={4}>适用机器</Col>
-                    {product.machines.map((s,key)=>{
+                    {this.machines.map((machine,key)=>{
                       return(
                         <Col span={4} key={key}>
-                          <Tag color="blue" closable>
-                            {s}
+                          <Tag closable color="#000">
+                            {MACHINES_CONVERT[machine]}
                           </Tag>
                         </Col>
                       );
                     })}
-                  </Row>
-                  <Row>
-                    <Col span={4}>价格规则设置</Col>
-                    
                   </Row>
                   <Row>
                     <button className="goods-btn-empty" onClick={this.submit}>信息已确认，提交</button>

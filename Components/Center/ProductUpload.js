@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { Upload,Icon,notification} from "antd";
 import { observable,toJS} from "mobx";
+import PropTypes from "prop-types";
+
 import request from "../Fetch/request";
 
 @observer class ProductUpload extends Component{
-    @observable uploadedImage = null;
     @observable tmpKey = null;
-    fontEndCheck = (file, fileList) =>{
-     
+
+    //上传前，前端对上传资料的检测
+    fontEndCheck = (file) =>{
       const isJPG = file.type === "image/jpeg";
       if (!isJPG) {
         message.error("图片必须为JPG格式!");
@@ -19,7 +21,8 @@ import request from "../Fetch/request";
       }
       return isJPG && isLt2M;
     }
-
+    
+    //上传图片后的返回数据处理
     handleChange = (callback) => {
       let {status,response} = callback.file;
       if(status === "done" && response.success){
@@ -27,7 +30,7 @@ import request from "../Fetch/request";
           message: "产品图片上传成功",
           style:{background:"#c3f0ad",color:"#fff",border:"1px solid #52c41a"}
         });
-        this.uploadedImage = response.location;
+        this.props.callback(response.location);
         this.tmpKey = response.Key;
       }
 
@@ -39,6 +42,7 @@ import request from "../Fetch/request";
       }
     }
     
+    //上传已上传图片
     deletePic = async () => {
       let res;
       try{
@@ -48,7 +52,7 @@ import request from "../Fetch/request";
       }
       console.log(res);
       if(res && res.success){
-        this.uploadedImage = null;
+        this.props.callback(null);
       }else{
         notification["error"]({
           message: "删除图片失败，请检查您的网络是否正常",
@@ -56,10 +60,11 @@ import request from "../Fetch/request";
         });
       }
     }
+    
     render(){
       return(
         <div>
-          {this.uploadedImage?
+          {this.props.mainpicture?
             <div>
               <a>
                 <Icon type="close" style={{position:"absolute",
@@ -70,7 +75,7 @@ import request from "../Fetch/request";
               </a>
               <img 
                 style={{width:"100%"}}
-                src={`http://${this.uploadedImage}`}/>
+                src={`http://${this.props.mainpicture}`}/>
             </div>
             :
             <div style={{width:"100%",height:"300px",background:"#e8e8e8",textAlign:"center",lineHeight:"300px"}}>
@@ -88,5 +93,8 @@ import request from "../Fetch/request";
     }
 }
 
-
+ProductUpload.propTypes = {
+  mainpicture: PropTypes.string,
+  callback:PropTypes.func
+};
 export default ProductUpload;

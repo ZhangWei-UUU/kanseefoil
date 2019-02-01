@@ -37,7 +37,7 @@ import "../../Style/course.css";
         message.success("删除成功");
         this.getList();
       }else{
-        message.error("删除失败，请检查网");
+        message.error("删除失败，请检查网络是否正常");
       }
     }
     
