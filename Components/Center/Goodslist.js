@@ -26,11 +26,6 @@ import {COLORS_CONVERT,METIRAILS_CONVERT} from "../../Translator";
         if(res.result.length>0){
           this.dataSource = res.result;
         }
-      }else{
-        notification["error"]({
-          message: "产品列表加载失败，请检查您的网络是否正常",
-          style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
-        });
       }
     }
 

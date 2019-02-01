@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import { Icon,Breadcrumb,Row,Col,Divider, Form, Tag,Modal,Input,notification } from "antd";
+import { Icon,Breadcrumb,Row,Col,Divider, Form, Tag,notification } from "antd";
 import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 
@@ -9,10 +9,8 @@ import ProductUpload from "./ProductUpload";
 
 import request from "../Fetch/request";
 import "../../Style/course.css";
+
 import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translator";
-
-
-
 
 @observer class addGoods extends Component{
     @observable name = "";
@@ -20,7 +18,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
     @observable colors = ["red","blue","gold"];
     @observable suited = ["paper","lether","pet"];
     @observable machines = ["auto","non_auto"];
-    @observable price = 999;
+    @observable price = "";
     @observable mainpicture = null;
     
     updateImage = (param) => {
@@ -35,17 +33,18 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
       this.price = e.target.value;
     }
 
-    reduceSizes = (value) => {
-      const newarray = this.colors.filter(tag => tag !== value);
-          
-      this.size= newarray;
+    reduce = (key,value) => {
+      if(this[key].length<2){
+        notification["warn"]({
+          message: "至少保留一个规格",
+          style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
+        });
+      }else{
+        const newarray = this[key].filter(tag => tag !== value);
+        this[key]= newarray;
+      }
     }
 
-    reduceColors = (value) => {
-      const newarray = this.colors.filter(tag => tag !== value);
-          
-      this.colors = newarray;
-    }
     submit = async () => {
       const product = {
         name:this.name, 
@@ -57,6 +56,21 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
         price:this.price
       };
       let res;
+
+      if(this.name === "" || this.name === undefined  || this.name === null ){
+        notification["warn"]({
+          message: "请填写产品名称",
+          style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
+        });
+        return;
+      }
+      if(this.price === "" || this.price === undefined  || this.price === null ){
+        notification["warn"]({
+          message: "请填写产品价格",
+          style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
+        });
+        return;
+      }
       try{
         res = await request("POST", "/api/product/",product);  
       }catch(error){
@@ -67,6 +81,13 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
           message: "产品添加成功",
           style:{background:"#c3f0ad",color:"#fff",border:"1px solid #52c41a"}
         });
+        this.name = "";
+        this.size = [120,240];
+        this.colors = ["red","blue","gold"];
+        this.suited = ["paper","lether","pet"];
+        this.machines = ["auto","non_auto"];
+        this.price = "";
+        this.mainpicture = null;
       }else{
         notification.open({
           message: "产品添加失败",
@@ -130,9 +151,9 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                     {this.size.map((s,key)=>{
                       return(
                         <Col span={4} key={key}>
-                          <Tag closable={this.size.length ===1?false:true}
+                          <Tag 
                             color="#000" 
-                            onClose={()=>this.reduceSizes(s)}>
+                            onClick={()=>this.reduce("size",s)}>
                             {s}米
                           </Tag>
                         </Col>
@@ -144,8 +165,8 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                     {this.colors.map((color,key)=>{
                       return(
                         <Col span={4} key={key}>
-                          <Tag closable={this.colors.length ===1?false:true}
-                            onClose={()=>this.reduceColors(color)}
+                          <Tag 
+                            onClick={()=>this.reduce("colors",color)}
                             color={color}>
                             {COLORS_CONVERT[color]}
                           </Tag>
@@ -155,11 +176,13 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                   </Row>
                   <Row style={{margin:"20px auto"}}>
                     <Col span={4}>适用材质</Col>
-                    {this.suited.map((s,key)=>{
+                    {this.suited.map((m,key)=>{
+                      console.log(m);
                       return(
                         <Col span={3} key={key}>
-                          <Tag color="#000" closable>
-                            {METIRAILS_CONVERT[s]}
+                          <Tag color="#000"  
+                            onClick={()=>this.reduce("suited",m)}>
+                            {METIRAILS_CONVERT[m]}
                           </Tag>
                         </Col>
                       );
@@ -170,7 +193,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                     {this.machines.map((machine,key)=>{
                       return(
                         <Col span={4} key={key}>
-                          <Tag closable color="#000">
+                          <Tag color="#000"  onClick={()=>this.reduce("machines",machine)}>
                             {MACHINES_CONVERT[machine]}
                           </Tag>
                         </Col>

@@ -54,9 +54,9 @@ const { Content } = Layout;
                   <Col span={6} key={key} style={{padding:"8px"}}>
                     <Link href={`/product/details?id=${product._id}`}><a>
                       <div className="list-product-picture">
-                        <img src={`/product/details?id=${product._id}`}/>
+                        <img src={`http://${product.mainpicture}`}/>
                         <p style={{color:"#484848"}}>{product.name}</p>
-                        <p style={{color:"#f23835"}}>￥{product.price[0].count}</p>
+                        <p style={{color:"#f23835"}}>￥{product.price}</p>
                       </div>
                     </a></Link>
                   </Col>
