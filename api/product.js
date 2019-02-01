@@ -71,4 +71,15 @@ router.post("/upload",multer().any(),(req,res)=>{
     res.end();
   }).pipe(res);
 });
+
+router.delete("/deleteUploaded/*",(req,res)=>{
+  var url = req.params[0];
+  request.del(`${BACK_END}/product/deleteUploaded/${url}?token=${req.cookies.jwt}&userId=${req.cookies.userId}`)
+    .on("error",(err)=>{
+      res.statusCode = "500";
+      res.statusMessage = err;
+      res.end();
+    }).pipe(res);
+});
+
 module.exports = router;
