@@ -276,6 +276,21 @@
     cursor: pointer;
 }
 
+.goods-btn {
+    border: 1px solid #FF0036;
+    width: 180px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #FF0036;
+    color:#FFF;
+    margin:10px auto;
+    outline: none;
+    margin-left: 10px;
+}
+
+.goods-btn:hover{
+    cursor: pointer;
+}
 .goods-tag {
     border-radius: 0;
     height: 30px;
@@ -300,4 +315,25 @@
     width: 100%;
     border:none;
     margin-bottom: 8px;
+}
+
+.gray-single-select {
+    border:1px solid #999;
+    color:#999;
+    margin:5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.gray-single-select:hover {
+    cursor: pointer;
+}
+
+.red-single-select {
+    border:1px solid #FF0036;
+    color:#FF0036;
+    margin:5px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #ffeded;
 }

@@ -43,19 +43,20 @@ import fake from "./model";
             delete values.contactor;
             delete values.tel;
             try{
-              res = await request("POST","/api/customer",values);
+              res = await request("POST","/api/partners",values);
             }catch(err){
               message.error("请检查网络，接口调用失败");
               console.error(err);
             }finally{
               this.loading =false;
             }
-            if(res.ok && res.n &&res.ok === 1 && res.n ===1){
-              message.success("添加成功");
-              this.props.form.resetFields();
-            }else{
-              message.error("添加失败，请检查数据库是否正常运行");
-            }
+            console.log(res);
+            // if(res.ok && res.n && res.ok === 1 && res.n ===1){
+            //   message.success("添加成功");
+            //   this.props.form.resetFields();
+            // }else{
+            //   message.error("添加失败，请检查数据库是否正常运行");
+            // }
           }
         }
       });

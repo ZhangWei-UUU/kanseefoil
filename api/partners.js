@@ -4,9 +4,9 @@ const request = require("request");
 const {BACK_END} = process.env;
 
 // 添加新客户
-router.post("/customer",(req,res)=>{
+router.post("/",(req,res)=>{
   const options = {
-    url: `${BACK_END}/customer`,
+    url: `${BACK_END}/partners`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(req.body)
