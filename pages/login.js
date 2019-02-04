@@ -35,15 +35,15 @@ const FormItem = Form.Item;
           try{
             data =  await request("POST","/api/authentication/login",values);
           }catch(e){
-            this.alert = e.toString();
+            this.alert = `返回码：500，服务器处于停机状态。${e.message}`;
           }finally{
             setTimeout(()=>{
               this.loading = false;
             },1500);
           }
-          if(data.success){
+          if(data && data.success){
             window.location.href="/usercenter";
-          }else{
+          }else if(data && !data.success &&data.result){
             this.alert = data.result;
           }
         }

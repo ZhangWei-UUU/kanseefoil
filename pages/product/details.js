@@ -156,7 +156,7 @@ const { Content } = Layout;
                       </button>
          
                       <Link href="/market"><a style={{color:"red",marginLeft:"10px"}}>
-                        返回商城
+                        返回仓库
                       </a></Link>
                     </Row>
                   </div>

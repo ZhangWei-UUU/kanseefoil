@@ -30,7 +30,7 @@ const product = {
     }catch(error){
       message.error(error.toString());
     }
-    if(data.name){
+    if(data && data.name){
       this.customer = data;
     }else{
       message.error("数据加载失败");

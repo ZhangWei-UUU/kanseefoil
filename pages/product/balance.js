@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import { Layout,Row,Col,Icon,InputNumbe,Table,Select,notification, Button} from "antd";
+import { Layout,Row,Col,Icon,InputNumbe,Table,Select,notification, Button,message} from "antd";
 import { observer } from "mobx-react";
 import { observable, toJS } from "mobx";
 import Router from "next/router";
@@ -11,6 +11,7 @@ import request from "../../Components/Fetch/request";
 import {COLORS_CONVERT} from "../../Translator";
 
 import "../../style.css";
+import { async } from "rxjs/internal/scheduler/async";
 
 const {Option} = Select;
 const { Content } = Layout;
@@ -19,6 +20,9 @@ const { Content } = Layout;
     @observable dataSource = [];
     @observable receiver = null;
     @observable partnersSource = [];
+    @observable partnerName = null;
+    @observable loading = false;
+
     static getInitialProps(ctx){
       if(process.browser){   
         return {userName:ctx.userName,userId:ctx.userId,id:ctx.query.id}; 
@@ -61,6 +65,7 @@ const { Content } = Layout;
         alert("xxx");
       }
     }
+
     sumPrice = (array) => {
       let sum = 0;
       array.forEach(obj=>{
@@ -77,6 +82,7 @@ const { Content } = Layout;
           return obj;
         }
       });
+
       if(newArray.length === 0){
         notification["error"]({
           message: "您的购物车已清空，1秒后回到商品页面",
@@ -94,8 +100,17 @@ const { Content } = Layout;
     }
     
     selectPartner = (partner) => {
-      console.log(partner);
+      this.partnerName = partner;
     }
+
+    confirmPartner = () => {
+      this.partnersSource.forEach(obj=>{
+        if(obj.name === this.partnerName){
+          this.receiver = obj;
+        }
+      });
+    }
+
     cancel = () => {
       sessionStorage.removeItem("shopping-cart");
       notification["success"]({
@@ -106,6 +121,35 @@ const { Content } = Layout;
       setTimeout(()=>{
         Router.push("/market");
       },3000);
+    }
+    // 提交订单
+    submit = async () => {
+      this.loading = true;
+      var value = {};
+      value.list = this.dataSource;
+      value.receiver = this.receiver;
+      value.sum = this.sumPrice(this.dataSource);
+      if(value.list.length < 0 || !value.receiver){
+        message.info("请填写完整的订单信息");
+      }else{
+        let res;
+        try{
+          res = await request("POST","/api/order/",value);
+        }catch(error){
+          console.log(error.message);
+        }finally{
+          this.loading = false;
+        }
+
+        if(res && res.ok === 1 && res.n === 1){
+          notification["success"]({
+            message:"订单创建成功",
+            style:{background:"#c3f0ad",color:"#fff",border:"1px solid #52c41a"}
+          });
+          sessionStorage.removeItem("shopping-cart");
+          Router.push("/market");
+        }
+      }
     }
 
     render(){
@@ -139,6 +183,7 @@ const { Content } = Layout;
           return(<a onClick={()=>this.delete(proxy.key)}><Icon type="delete"/></a>);
         }}
       ];
+      console.log(toJS(this.receiver));
       return(
         <Layout>
           <HeadNav themeStyle="light" userName={userName}/> 
@@ -149,30 +194,30 @@ const { Content } = Layout;
             {this.receiver?
               <Row>
                 <Col span={12}>
-                  <h3>客户名称：</h3>
+                  <h3>客户名称：{this.receiver.name}</h3>
                 </Col>
                 <Col span={12}>
-                  <h3>税号：</h3>
+                  <h3>税号：{this.receiver.code}</h3>
                 </Col>
                 <Col span={12}>
-                  <h3>收货人：</h3>
+                  <h3>收货人：{this.receiver.contactors[0].name}</h3>
                 </Col>
                 <Col span={12}>
-                  <h3>联系电话：</h3>
+                  <h3>联系电话：{this.receiver.contactors[0].tel}</h3>
                 </Col>
                 <Col span={24}>
-                  <h3>收货地址：</h3>
+                  <h3>收货地址：{this.receiver.address}</h3>
                 </Col>
               </Row>:
-              <div style={{height:"200px",border:"2px dashed #ccc",background:"#e8e8e8"}}>
+              <div style={{height:"200px",border:"2px dashed #ccc",background:"#e8e8e8",marginBottom:"50px"}}>
                 <center>
                   <Select style={{width:"60%",margin:"80px 20px"}} 
-                    onChange={()=>this.selectPartner(partner)}>
+                    onChange={this.selectPartner}>
                     {this.partnersSource.map(partner=>{
                       return <Option key={partner.name}>{partner.name}</Option>;
                     })}
                   </Select>
-                  <Button type="primary">确认客户</Button>
+                  <Button type="primary" onClick={this.confirmPartner}>确认客户</Button>
                 </center>
               </div>
             }
@@ -195,7 +240,9 @@ const { Content } = Layout;
                 </a></Link>
               </Col>
               <Col span={5}>
-                <button className="goods-btn" >确认订单</button>
+                <button className="goods-btn" 
+                  loading={`${this.loading}`}
+                  onClick={this.submit}>确认订单</button>
               </Col>
             </Row>
           </Content>  

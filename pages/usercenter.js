@@ -23,9 +23,9 @@ const ITEMS = [
 
   static getInitialProps(ctx){
     if(process.browser){
-      return {subitem: ctx.query.subitem || "mychannel",userName:ctx.userName,userId:ctx.userId}; 
+      return {subitem: ctx.query.subitem || "mychannel",userName:ctx.userName,userId:ctx.userId,id: ctx.query.id}; 
     }else{
-      return {subitem:ctx.req.query.subitem || "mychannel",userName:ctx.userName,userId:ctx.userId};   
+      return {subitem:ctx.req.query.subitem || "mychannel",userName:ctx.userName,userId:ctx.userId, id : ctx.query.id};   
     }
   }
     @observable userInfo = null;
@@ -59,7 +59,7 @@ const ITEMS = [
               </Menu>
             </Sider>
             <Content>
-              <DynamicComponent/>
+              <DynamicComponent id={this.props.id}/>
             </Content>  
           </Layout>
         </Layout>
@@ -69,7 +69,8 @@ const ITEMS = [
 
 UserCenter.propTypes = {
   subitem: PropTypes.string,
-  userName:PropTypes.string
+  userName:PropTypes.string,
+  id:PropTypes.string
 };
 
 export default withPrivate(UserCenter,{redirect:true});

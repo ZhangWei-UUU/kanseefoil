@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import {  Row,Col,Breadcrumb, Icon, Divider,Button  } from "antd";
+import { observer } from "mobx-react";
+import { observable,toJS} from "mobx";
+import PropTypes from "prop-types";
+import moment from "moment";
+import { Breadcrumb, Icon, Divider,Button,message } from "antd";
 import request from "../Fetch/request";
 import "../../style.css";
+import {COLORS_CONVERT} from "../../Translator";
 
-const order =  {key :"112",code:"xa2312d1",orderer:"上海博物馆有限公司",date:"2018-02-12",
-  contact:"王大锤",tel:15789212122,
-  goods:[
-    { name:"S1CNY-123",color:"红",size:"240m",price:240,count:1},
-    { name:"S1CNY-124",color:"红",size:"120m",price:340,count:3},
-    { name:"S1CNY-125",color:"红",size:"240m",price:140,count:8},
-    { name:"S1CNY-126",color:"红",size:"120m",price:240,count:3},
-  ],
-  address:"上海市宝山区曲阜路2013号",
-  price:120,count:8,sum:960,delivery:true,clearup:false};
-
-
-class Order extends Component{
+  @observer class Order extends Component{
+    @observable order = null;
     printOrder = () => {
       var mywindow = window.open("", "PRINT", "height=400,width=600");
       mywindow.document.write("<html><head><title>" + document.title  + "</title>");
@@ -29,13 +23,22 @@ class Order extends Component{
       return true;
     }
     
-    sum = () => {
-      let result = 0;
-      order.goods.forEach(good=>{
-        result += good.price * good.count;
-      });
-      return result;
+    async componentDidMount(){
+      let res;
+      try{
+        res = await request("GET",`/api/order/${this.props.id}`);
+      }catch(err){
+        console.error(err.message);
+      }
+
+      if(res && res.success){
+        console.log(res.result);
+        this.order = res.result;
+      }else{
+        message.error(res.result);  
+      }
     }
+
     render(){
       return(
         <div style={{margin:"30px auto",width:"95%",background:"#fff",height:"900px",padding:"50px"}}>
@@ -52,64 +55,74 @@ class Order extends Component{
             </Breadcrumb.Item>
           </Breadcrumb>
           <Divider/>
-          <div id="order-content">
-            <center>
-              <h1>上海翰溪金箔出货单</h1>
-            </center>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 10fr 5fr",marginTop:"28px"}}>
-              <div>
+          {this.order?
+            <div id="order-content">
+              <center>
+                <h1>上海翰溪金箔出货单</h1>
+              </center>
+           
+              <div style={{display:"grid",gridTemplateColumns:"1fr 10fr 5fr",marginTop:"28px"}}>
+                <div>
+              
+                </div>
+                <div>
+                  <h3>收件单位:{this.order.receiver.name}</h3>
+                  <h3>收件地址:{this.order.receiver.address}</h3>
+                </div>
+                <div>
+                  <h3>收件人:{this.order.receiver.contactors[0].name}</h3>
+                  <h3>联系电话:{this.order.receiver.contactors[0].tel}</h3>
+                </div>
+              </div>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 10fr 5fr",marginTop:"5px"}}>
+                <div></div>
+                <div>出货日期：{this.order.date?moment(this.order.date).format("YYYY-MM-DD"):null} | 单号：{this.order._id?this.order._id:null}</div>
               
               </div>
-              <div>
-                <h3>收件单位:{order.orderer}</h3>
-                <h3>收件地址:{order.address}</h3>
-              </div>
-              <div>
-                <h3>收件人:{order.contact}</h3>
-                <h3>联系电话:{order.tel}</h3>
-              </div>
-            </div>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 10fr 5fr",marginTop:"5px"}}>
-              <div></div>
-              <div>出货日期：{order.date} | 单号：{order.code}</div>
-              
-            </div>
-            <table border="1" cellSpacing="0" style={{margin:"10px auto",textAlign:"center"}}>
-              <tr>
-                <th style={{width:"200px",padding:"5px 10px"}}>产品名称</th> 
-                <th style={{width:"100px",padding:"5px 10px"}}>颜色 </th>
-                <th style={{width:"200px",padding:"5px 10px"}}>尺寸 </th>
-                <th style={{width:"100px",padding:"5px 10px"}}>单价(元)</th>
-                <th style={{width:"100px",padding:"5px 10px"}}>数量(支)</th>
-                <th style={{width:"100px",padding:"5px 10px"}}>总价(元)</th>
-              </tr>
-              {order.goods.map((product,key)=>{
-                return(
-                  <tr key={key}>
-                    <th>{product.name}</th> 
-                    <th>{product.color} </th>
-                    <th>{product.size} </th>
-                    <th>{product.price}</th>
-                    <th>{product.count}</th>
-                    <th>{product.count * product.price}</th>
+              <table border="1" cellSpacing="0" style={{margin:"10px auto",textAlign:"center"}}>
+                <tbody>
+                  <tr>
+                    <th style={{width:"200px",padding:"5px 10px"}}>产品名称</th> 
+                    <th style={{width:"100px",padding:"5px 10px"}}>颜色 </th>
+                    <th style={{width:"200px",padding:"5px 10px"}}>尺寸 </th>
+                    <th style={{width:"100px",padding:"5px 10px"}}>单价(元)</th>
+                    <th style={{width:"100px",padding:"5px 10px"}}>数量(支)</th>
+                    <th style={{width:"100px",padding:"5px 10px"}}>总价(元)</th>
                   </tr>
-                );
-              })}
-            </table>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 10fr 5fr",marginTop:"35px"}}>
-              <div></div>
-              <div></div>
-              <div>
-                <h2 style={{float:"right",marginRight:"100px"}}>总计：{this.sum()} 元</h2>
+             
+                  {this.order.list.map((product,key)=>{
+                    return(
+                      <tr key={key}>
+                        <th>{product.name}</th> 
+                        <th>{COLORS_CONVERT[product.color]} </th>
+                        <th>{product.size}米 </th>
+                        <th>{product.price/product.count}</th>
+                        <th>{product.count}</th>
+                        <th>{product.price}</th>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 10fr 5fr",marginTop:"35px"}}>
+                <div></div>
+                <div></div>
+                <div>
+                  <h2 style={{float:"right",marginRight:"100px"}}>总计：{this.order.sum?this.order.sum:null} 元</h2>
+                </div>
               </div>
             </div>
-          </div>
+            :null}
           <center>
             <Button type="primary" onClick={this.printOrder}>打印出货单</Button>
           </center>
         </div>
       );
     }
-}
+  }
 
+Order.propTypes = {
+  id: PropTypes.string
+};
+  
 export default Order;

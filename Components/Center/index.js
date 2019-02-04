@@ -8,7 +8,6 @@ const MultiComponents = {
   customerlist:dynamic(import("./Customerlist")),
   goodslist:dynamic(import("./Goodslist")),
   addCustomer:dynamic(import("./addCustomer")),
-  addOrder:dynamic(import("./addOrder")),
   addGoods:dynamic(import("./addGoods")),
   orders:dynamic(import("./Order")),
   message:dynamic(import("./Message")),
