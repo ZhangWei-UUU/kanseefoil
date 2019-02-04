@@ -3,4 +3,4 @@ RUN mkdir /mainApp
 WORKDIR /mainApp
 COPY . /mainApp
 RUN yarn
-CMD [ "yarn", "start" ]
+CMD [ "npm", "install" ]
