@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import { Upload,Icon,notification} from "antd";
+import { Upload,Icon,notification,message} from "antd";
 import { observable,toJS} from "mobx";
 import PropTypes from "prop-types";
 
@@ -11,15 +11,16 @@ import request from "../Fetch/request";
 
     //上传前，前端对上传资料的检测
     fontEndCheck = (file) =>{
-      const isJPG = file.type === "image/jpeg";
-      if (!isJPG) {
+      const isPic= file.type === "image/jpeg" || "image/png";
+      if (!isPic) {
         message.error("图片必须为JPG格式!");
       }
+
       const isLt2M = file.size / 1024 / 1024 < 2;
       if (!isLt2M) {
         message.error("图片大小应该小于2MB!");
       }
-      return isJPG && isLt2M;
+      return isPic && isLt2M ;
     }
     
     //上传图片后的返回数据处理

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Icon,Breadcrumb,Row,Col,Divider, Form, Tag,notification } from "antd";
 import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
+import Router from "next/router";
 
 import PropTypes from "prop-types";
 import ProductUpload from "./ProductUpload";
@@ -88,6 +89,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
         this.machines = ["auto","non_auto"];
         this.price = "";
         this.mainpicture = null;
+        Router.push("/usercenter?subitem=goodslist");
       }else{
         notification.open({
           message: "产品添加失败",
