@@ -51,12 +51,12 @@ import fake from "./model";
               this.loading =false;
             }
             console.log(res);
-            // if(res.ok && res.n && res.ok === 1 && res.n ===1){
-            //   message.success("添加成功");
-            //   this.props.form.resetFields();
-            // }else{
-            //   message.error("添加失败，请检查数据库是否正常运行");
-            // }
+            if(res.ok && res.n && res.ok === 1 && res.n ===1){
+              message.success("添加成功");
+              this.props.form.resetFields();
+            }else{
+              message.error("添加失败，请检查数据库是否正常运行");
+            }
           }
         }
       });

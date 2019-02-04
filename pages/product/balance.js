@@ -12,11 +12,13 @@ import {COLORS_CONVERT} from "../../Translator";
 
 import "../../style.css";
 
+const {Option} = Select;
 const { Content } = Layout;
 
 @observer class Balance extends Component{
     @observable dataSource = [];
     @observable receiver = null;
+    @observable partnersSource = [];
     static getInitialProps(ctx){
       if(process.browser){   
         return {userName:ctx.userName,userId:ctx.userId,id:ctx.query.id}; 
@@ -26,6 +28,7 @@ const { Content } = Layout;
     }
 
     componentDidMount(){
+      this.getPartnersList();
       var shopping_cart = sessionStorage.getItem("shopping-cart");
       if(shopping_cart){
         var originData = JSON.parse(shopping_cart);
@@ -45,6 +48,19 @@ const { Content } = Layout;
       }
     }
     
+    getPartnersList = async () =>{
+      let res;
+      try{
+        res = await request("GET", "/api/partners/all");  
+      }catch(error){
+        message.error(error.toString());
+      }
+      if(res.success){
+        this.partnersSource = res.result;
+      }else{
+        alert("xxx");
+      }
+    }
     sumPrice = (array) => {
       let sum = 0;
       array.forEach(obj=>{
@@ -77,6 +93,9 @@ const { Content } = Layout;
      
     }
     
+    selectPartner = (partner) => {
+      console.log(partner);
+    }
     cancel = () => {
       sessionStorage.removeItem("shopping-cart");
       notification["success"]({
@@ -147,7 +166,12 @@ const { Content } = Layout;
               </Row>:
               <div style={{height:"200px",border:"2px dashed #ccc",background:"#e8e8e8"}}>
                 <center>
-                  <Select style={{width:"60%",margin:"80px 20px"}}/>
+                  <Select style={{width:"60%",margin:"80px 20px"}} 
+                    onChange={()=>this.selectPartner(partner)}>
+                    {this.partnersSource.map(partner=>{
+                      return <Option key={partner.name}>{partner.name}</Option>;
+                    })}
+                  </Select>
                   <Button type="primary">确认客户</Button>
                 </center>
               </div>

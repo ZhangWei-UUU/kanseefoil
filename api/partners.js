@@ -6,7 +6,7 @@ const {BACK_END} = process.env;
 // 添加新客户
 router.post("/",(req,res)=>{
   const options = {
-    url: `${BACK_END}/partners`,
+    url: `${BACK_END}/partners?token=${req.cookies.jwt}&userId=${req.cookies.userId}`,
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(req.body)

@@ -14,15 +14,16 @@ import "../../Style/course.css";
     }
     
     getList = async () =>{
-      let data;
+      let res;
       try{
-        data = await request("GET", "/api/partners/all");  
+        res = await request("GET", "/api/partners/all");  
       }catch(error){
         message.error(error.toString());
       }
-      console.log(data);
-      if(data && data.length>0){
-        this.dataSource = data.reverse();
+      if(res.success){
+        this.dataSource = res.result;
+      }else{
+        alert("xxx");
       }
     }
 
