@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 import PropTypes from "prop-types";
 import moment from "moment";
-import { Breadcrumb, Icon, Divider,Button,message } from "antd";
+import { Breadcrumb, Icon, Divider,Button,message,notification } from "antd";
 import request from "../Fetch/request";
 import "../../style.css";
 import {COLORS_CONVERT} from "../../Translator";
@@ -23,6 +23,16 @@ import {COLORS_CONVERT} from "../../Translator";
       return true;
     }
     
+    clear = async () => {
+      var order = this.order;
+      order.payment = true;
+      let res;
+      try{
+        // res = await request("POST","/api/order/",order);
+      }catch(error){
+        console.log(error.message);
+      }
+    }
     async componentDidMount(){
       let res;
       try{
@@ -115,6 +125,9 @@ import {COLORS_CONVERT} from "../../Translator";
             :null}
           <center>
             <Button type="primary" onClick={this.printOrder}>打印出货单</Button>
+            {this.order && this.order.payment?null:
+              <Button style={{marginLeft:"20px",color:"#fff",backgroundColor:"red"}} 
+                onClick={this.clear}>货款结清</Button>}
           </center>
         </div>
       );

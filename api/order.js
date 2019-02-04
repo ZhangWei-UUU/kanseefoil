@@ -19,6 +19,7 @@ router.post("/",(req,res)=>{
   let {jwt,userId} = req.cookies;
   value.creatorId = userId;
   value.date = new Date().getTime();
+  value.payment = false;
 
   const options = {
     url: `${BACK_END}/order?token=${jwt}&userId=${userId}`,
@@ -28,6 +29,14 @@ router.post("/",(req,res)=>{
   };
 
   request.post(options).on("error",(err)=>{
+    res.statusCode = "500";
+    res.statusMessage = err;
+    res.end();
+  }).pipe(res);
+});
+
+router.delete("/:id",(req,res)=>{
+  request.del(`${BACK_END}/order/${req.params.id}?token=${req.cookies.jwt}&userId=${req.cookies.userId}`).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;
     res.end();

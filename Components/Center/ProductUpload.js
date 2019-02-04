@@ -50,7 +50,6 @@ import request from "../Fetch/request";
       }catch(error){
         console.error(error.toString());
       }
-      console.log(res);
       if(res && res.success){
         this.props.callback(null);
       }else{

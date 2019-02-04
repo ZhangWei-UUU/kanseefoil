@@ -147,7 +147,7 @@ const { Content } = Layout;
             style:{background:"#c3f0ad",color:"#fff",border:"1px solid #52c41a"}
           });
           sessionStorage.removeItem("shopping-cart");
-          Router.push("/market");
+          Router.push("/usercenter");
         }
       }
     }
