@@ -10,6 +10,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT} from "../../Translator";
 
 @observer class Goodslist extends Component{
     @observable dataSource = [];
+    
     componentDidMount(){
       this.getList();
     }
