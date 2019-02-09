@@ -157,7 +157,7 @@ import "../style.css";
               top:0,left:0,bottom:0,right:0,
               background:"none"}}>
               <Col lg={{span:8,offset:8}} md={{span:12,offset:6}}>
-                <h1 style={{color:"#fff",marginTop:"300px",textAlign:"center",fontSize:"60px"}}>Kansee · 翰溪<br/>智能管理系统</h1>
+                <h1 style={{color:"#fff",marginTop:"300px",textAlign:"center",fontSize:"60px"}}>Kansee·小竹<br/>轻结算</h1>
                 <center>
                   {this.props.login?
                     <Link href="/usercenter">
