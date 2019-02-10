@@ -23,7 +23,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT} from "../../Translator";
         message.error(error.toString());
       }
   
-      if(res.success && res.result){
+      if(res && res.success && res.result){
         if(res.result.length>0){
           this.dataSource = res.result;
         }

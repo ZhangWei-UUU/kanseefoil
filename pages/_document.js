@@ -11,13 +11,6 @@ class MyDocument extends Document {
     return { ...page, styleTags  };
   }
     
-  //   renderCustomScript () {
-  //     return `
-  //           window.LOGIN_DATA = {
-  //             loginUser: ${this.props.jwt ? escape(this.props.jwt) : "null"}
-  //           };
-  //         `;
-  //   }
   render() {
     return (
       <html lang="zh-Hans">
@@ -26,7 +19,6 @@ class MyDocument extends Document {
           <meta name="description" content="Kanseefoil"/>
           <link rel="shortcut icon" href="/static/favicon.ico"></link>
           {this.props.styleTags}
-          {/* <script dangerouslySetInnerHTML={{ __html: this.renderCustomScript() }} async defer/> */}
         </Head>
         <body>
           <Main />
