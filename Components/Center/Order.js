@@ -42,7 +42,6 @@ import {COLORS_CONVERT} from "../../Translator";
       }
 
       if(res && res.success){
-        console.log(res.result);
         this.order = res.result;
       }else{
         message.error(res.result);  

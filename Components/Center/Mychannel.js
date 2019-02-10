@@ -19,7 +19,6 @@ import "../../Style/course.css";
       }
   
       if(data && data.success && data.result){
-        console.log(data.result);
         this.dataSource = data.result;
       }
     }

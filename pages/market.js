@@ -33,7 +33,6 @@ const { Content } = Layout;
       if(res && res.success && res.result){
         if(res.result.length>0){
           this.products = res.result;
-          console.log(res.result);
         }
       }else{
         notification["error"]({

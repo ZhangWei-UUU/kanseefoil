@@ -6,7 +6,6 @@ const {BACK_END} = process.env;
 router.get("/:id",(req,res)=>{
   let {id} = req.params;
   let {jwt,userId} = req.cookies;
-  console.log(id);
   request(`${BACK_END}/order/${id}?token=${jwt}&userId=${userId}`).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;

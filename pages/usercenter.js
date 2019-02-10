@@ -16,7 +16,6 @@ const ITEMS = [
   {name:"订单管理",icon:"file",url:"?subitem=mychannel",key:"mychannel"},
   {name:"商品管理",icon:"shop",url:"?subitem=goodslist",key:"goodslist"},
   {name:"客户管理",icon:"usergroup-add",url:"?subitem=customerlist",key:"customerlist"},
-  {name:"消息",icon:"mail",url:"?subitem=message",key:"message"},
   {name:"设置",icon:"setting",url:"?subitem=settings",key:"settings"}];
 
 @observer class UserCenter extends Component{

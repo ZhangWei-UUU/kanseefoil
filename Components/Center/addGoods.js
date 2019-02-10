@@ -179,7 +179,6 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                   <Row style={{margin:"20px auto"}}>
                     <Col span={4}>适用材质</Col>
                     {this.suited.map((m,key)=>{
-                      console.log(m);
                       return(
                         <Col span={3} key={key}>
                           <Tag color="#000"  

@@ -337,3 +337,32 @@
     text-align: center;
     background-color: #ffeded;
 }
+
+#case-box {
+    width: 550px;
+    height: 400px;
+    margin: 10px auto;
+    background: url("/static/images/box.jpg") no-repeat center center;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+    position: relative;
+}
+
+#order-box {
+    position: absolute;
+    bottom: 90px;
+    right: 0;
+    width: 360px;
+    transform:rotate(-7deg);
+    -ms-transform:rotate(-7deg); 
+    -moz-transform:rotate(-7deg); 	
+    -webkit-transform:rotate(-7deg); 
+    -o-transform:rotate(-7deg);
+}
+
+#order-box-select {
+    height:200px;
+    margin-bottom:50px
+}

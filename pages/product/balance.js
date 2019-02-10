@@ -43,12 +43,10 @@ const { Content } = Layout;
         this.dataSource = productArray;
       }else{
         notification["error"]({
-          message: "您还没有创建订单，三秒后回到商品页面",
+          message: "您还没有创建订单，回到商品页面",
           style:{background:"#c3f0ad",color:"#fff",border:"1px solid #52c41a"}
         });
-        setTimeout(()=>{
-          Router.push("/market");
-        },3000);
+        Router.push("/market");
       }
     }
     
@@ -85,13 +83,11 @@ const { Content } = Layout;
 
       if(newArray.length === 0){
         notification["error"]({
-          message: "您的购物车已清空，1秒后回到商品页面",
+          message: "您的购物车已清空，回到商品页面",
           style:{background:"#c3f0ad",color:"#fff",border:"1px solid #52c41a"}
         });
         sessionStorage.removeItem("shopping-cart");
-        setTimeout(()=>{
-          Router.push("/market");
-        },1000);
+        Router.push("/market");
       }else{
         sessionStorage.setItem("shopping-cart",JSON.stringify(newArray));
         this.dataSource = newArray;
@@ -110,17 +106,18 @@ const { Content } = Layout;
         }
       });
     }
-
+    
+    reselect = () => {
+      this.receiver = null;
+    }
     cancel = () => {
       sessionStorage.removeItem("shopping-cart");
       notification["success"]({
-        message: "订单取消，三秒后回到商品页面",
+        message: "订单取消，回到商品页面",
         style:{background:"#c3f0ad",color:"#fff",border:"1px solid #52c41a"}
       });
 
-      setTimeout(()=>{
-        Router.push("/market");
-      },3000);
+      Router.push("/market");
     }
     // 提交订单
     submit = async () => {
@@ -183,7 +180,6 @@ const { Content } = Layout;
           return(<a onClick={()=>this.delete(proxy.key)}><Icon type="delete"/></a>);
         }}
       ];
-      console.log(toJS(this.receiver));
       return(
         <Layout>
           <HeadNav themeStyle="light" userName={userName}/> 
@@ -191,36 +187,41 @@ const { Content } = Layout;
             <h1 style={{marginBottom:"50px 0"}}>订单列表</h1>
             <Table columns={columns} dataSource={this.dataSource} pagination={false}/>
             <h1 style={{margin:"50px 0"}}>收货客户</h1>
-            {this.receiver?
-              <Row>
-                <Col span={12}>
-                  <h3>客户名称：{this.receiver.name}</h3>
-                </Col>
-                <Col span={12}>
-                  <h3>税号：{this.receiver.code}</h3>
-                </Col>
-                <Col span={12}>
-                  <h3>收货人：{this.receiver.contactors[0].name}</h3>
-                </Col>
-                <Col span={12}>
-                  <h3>联系电话：{this.receiver.contactors[0].tel}</h3>
-                </Col>
-                <Col span={24}>
-                  <h3>收货地址：{this.receiver.address}</h3>
-                </Col>
-              </Row>:
-              <div style={{height:"200px",border:"2px dashed #ccc",background:"#e8e8e8",marginBottom:"50px"}}>
-                <center>
-                  <Select style={{width:"60%",margin:"80px 20px"}} 
-                    onChange={this.selectPartner}>
-                    {this.partnersSource.map(partner=>{
-                      return <Option key={partner.name}>{partner.name}</Option>;
-                    })}
-                  </Select>
-                  <Button type="primary" onClick={this.confirmPartner}>确认客户</Button>
-                </center>
-              </div>
-            }
+            <div id="case-box">
+              {this.receiver?
+                <Row id="order-box">
+                  <Col span={24}>
+                    <h3>客户名称：{this.receiver.name}</h3>
+                  </Col>
+                  <Col span={24}>
+                    <h3>税号：{this.receiver.code}</h3>
+                  </Col>
+                  <Col span={24}>
+                    <h3>收货人：{this.receiver.contactors[0].name}</h3>
+                  </Col>
+                  <Col span={24}>
+                    <h3>联系电话：{this.receiver.contactors[0].tel}</h3>
+                  </Col>
+                  <Col span={24}>
+                    <h3>收货地址：{this.receiver.address}</h3>
+                  </Col>
+                  <Col span={24}>
+                    <a style={{color:"#fff"}} onClick={this.reselect}>重新选择</a>
+                  </Col>
+                </Row>:
+                <div  id="order-box-select">
+                  <center>
+                    <Select style={{width:"60%",marginLeft:"150px",marginTop:"200px",marginBottom:"20px"}} 
+                      onChange={this.selectPartner}>
+                      {this.partnersSource.map(partner=>{
+                        return <Option key={partner.name}>{partner.name}</Option>;
+                      })}
+                    </Select><br/>
+                    <Button type="primary" onClick={this.confirmPartner}>确认客户</Button>
+                  </center>
+                </div>  
+              }
+            </div>
             <Row style={{position:"absolute",bottom:0,left:0,
               height:"60px",width:"100%"
             }}>

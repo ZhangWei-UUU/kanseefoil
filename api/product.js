@@ -26,7 +26,6 @@ router.post("/",(req,res)=>{
   
 // 获取产品信息
 router.get("/:id",(req,res)=>{
-  console.log(req.params.id);
   request(`${BACK_END}/product/${req.params.id}?token=${req.cookies.jwt}&userId=${req.cookies.userId}`)
     .on("error",(err)=>{
       res.statusCode = "500";

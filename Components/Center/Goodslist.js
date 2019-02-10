@@ -46,12 +46,8 @@ import {COLORS_CONVERT,METIRAILS_CONVERT} from "../../Translator";
     }
     
     render(){
-      console.log(toJS(this.dataSource));
       const columns = [
-        {key:1, title:"产品名称",dataIndex:"name",render:(ele,proxy)=>
-          <Link href={`/usercenter?subitem=goods&id=${proxy._id}`}>
-            <a>{ele}</a>
-          </Link>},
+        {key:1, title:"产品名称",dataIndex:"name"},
         {key:2, title:"使用范围",dataIndex:"suited",
           render:(suited)=>{
             return suited.map((s,key)=>{
