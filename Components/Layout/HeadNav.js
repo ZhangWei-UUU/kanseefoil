@@ -38,6 +38,9 @@ class HeadNav extends Component{
             <Item key="market" >
               <Link href="/market"><a>我的仓库</a></Link>
             </Item>
+            <Item key="balance" >
+              <Link href="/product/balance"><a>我的购物车</a></Link>
+            </Item>
             <Item key="bigdata" >
               <a href="/bigData" target="_blank">大数据分析</a>
             </Item>

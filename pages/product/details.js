@@ -39,6 +39,7 @@ const { Content } = Layout;
       
       if(res && res.success){
         this.product = res.result;
+        console.log(res.result);
       }
     }
 
@@ -60,11 +61,12 @@ const { Content } = Layout;
 
     addCart = () => {
       var obj ={};
+      obj.id = this.product._id;
       obj.name = this.product.name;
       obj.color = this.color;
       obj.size = this.size;
       obj.count = this.count;
-      obj.price = this.product.price*this.count*(this.size/120);
+      obj.price = this.product.price;
       var shopping_cart = sessionStorage.getItem("shopping-cart");
       if(!shopping_cart){
         var empty_array = [];

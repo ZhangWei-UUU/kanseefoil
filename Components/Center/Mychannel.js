@@ -19,9 +19,10 @@ import "../../Style/course.css";
       }
   
       if(data && data.success && data.result){
-        this.dataSource = data.result;
+        this.dataSource = data.result.reverse();
       }
     }
+
     closeDrawer = () => {
       this.isDrawer = false;
     }
@@ -46,6 +47,7 @@ import "../../Style/course.css";
           message.error(error.toString());
         }
         if(data && data.success && data.result){
+          
           this.dataSource = data.result;
         }
       }else{
@@ -65,7 +67,7 @@ import "../../Style/course.css";
           return <span>{moment(value).format("YYYY-MM-DD HH:mm:ss")}</span>;
         }},
         {key:3, title:"总金额",dataIndex:"sum",render:(ele,proxy)=><strong style={{color:"red"}}>￥{ele}</strong>},
-        {key:4, title:"结算",dataIndex:"clearup",render:(ele,proxy)=>{
+        {key:4, title:"结算",dataIndex:"payment",render:(ele,proxy)=>{
           return ele?<Icon type="check-circle" theme="filled" style={{color:"#A5D160"}}/>:"尚未付款";
         }},
         {key:5, title:"删除",dataIndex:"handle",render:(ele,proxy)=>

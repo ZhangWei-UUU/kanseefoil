@@ -16,7 +16,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
 @observer class addGoods extends Component{
     @observable name = "";
     @observable size = [120,240];
-    @observable colors = ["red","blue","gold"];
+    @observable colors = ["red","blue","gold","white","black","copper","ray","green"];
     @observable suited = ["paper","lether","pet"];
     @observable machines = ["auto","non_auto"];
     @observable price = "";
@@ -152,9 +152,9 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                     <Col span={4}>尺寸</Col>
                     {this.size.map((s,key)=>{
                       return(
-                        <Col span={4} key={key}>
+                        <Col span={3} key={key}>
                           <Tag 
-                            color="#000" 
+                            color="blue" 
                             onClick={()=>this.reduce("size",s)}>
                             {s}米
                           </Tag>
@@ -166,10 +166,10 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                     <Col span={4}>颜色</Col>
                     {this.colors.map((color,key)=>{
                       return(
-                        <Col span={4} key={key}>
+                        <Col span={2} key={key}>
                           <Tag 
                             onClick={()=>this.reduce("colors",color)}
-                            color={color}>
+                            color={"red"}>
                             {COLORS_CONVERT[color]}
                           </Tag>
                         </Col>
@@ -180,8 +180,8 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                     <Col span={4}>适用材质</Col>
                     {this.suited.map((m,key)=>{
                       return(
-                        <Col span={3} key={key}>
-                          <Tag color="#000"  
+                        <Col span={2} key={key}>
+                          <Tag color="orange"  
                             onClick={()=>this.reduce("suited",m)}>
                             {METIRAILS_CONVERT[m]}
                           </Tag>

@@ -341,7 +341,7 @@
 #case-box {
     width: 550px;
     height: 400px;
-    margin: 10px auto;
+    margin: 100px auto;
     background: url("/static/images/box.jpg") no-repeat center center;
     -webkit-background-size: 100%;
     -moz-background-size: 100%;

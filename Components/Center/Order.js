@@ -28,10 +28,24 @@ import {COLORS_CONVERT} from "../../Translator";
       order.payment = true;
       let res;
       try{
-        // res = await request("POST","/api/order/",order);
+        res = await request("POST","/api/order/modify",order);
       }catch(error){
         console.log(error.message);
       }
+      
+      if(res && res.ok=== 1 && res.nModified=== 1){
+        notification["success"]({
+          message: "订单已付款",
+          style:{background:"#c3f0ad",color:"#fff",border:"1px solid #52c41a"}
+        });
+      }else{
+        notification["error"]({
+          message: "通信失败，请检查您的网络是否正常",
+          style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
+        });
+      }
+
+
     }
     async componentDidMount(){
       let res;
@@ -40,7 +54,7 @@ import {COLORS_CONVERT} from "../../Translator";
       }catch(err){
         console.error(err.message);
       }
-
+      
       if(res && res.success){
         this.order = res.result;
       }else{

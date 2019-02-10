@@ -17,8 +17,13 @@ router.post("/",(req,res)=>{
   var value = req.body;
   let {jwt,userId} = req.cookies;
   value.creatorId = userId;
+  let sum = 0;
   value.date = new Date().getTime();
   value.payment = false;
+  value.list.forEach(obj=>{
+    sum += obj.count * obj.price;
+  });
+  value.sum = sum;
 
   const options = {
     url: `${BACK_END}/order?token=${jwt}&userId=${userId}`,
@@ -26,7 +31,21 @@ router.post("/",(req,res)=>{
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(value)
   };
+  request.post(options).on("error",(err)=>{
+    res.statusCode = "500";
+    res.statusMessage = err;
+    res.end();
+  }).pipe(res);
+});
 
+router.post("/modify",(req,res)=>{
+  let {jwt,userId} = req.cookies;
+  const options = {
+    url: `${BACK_END}/order/modify?token=${jwt}&userId=${userId}`,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(req.body)
+  };
   request.post(options).on("error",(err)=>{
     res.statusCode = "500";
     res.statusMessage = err;
