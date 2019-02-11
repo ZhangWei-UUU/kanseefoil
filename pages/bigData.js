@@ -157,8 +157,8 @@ import {data,circle_data,pillar_data,bar_data} from "./fake";
     return(
       <div className="big-data">
         <Head>
-          <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.4.1/dist/g2.min.js"></script>
-          <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script>
+          <script src="/static/g2.min.js"></script>
+          <script src="/static/data-set.min.js"></script>
         </Head>
         <div style={{padding:"5px 20px"}}>
           <center>
