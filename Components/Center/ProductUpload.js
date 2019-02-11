@@ -16,9 +16,9 @@ import request from "../Fetch/request";
         message.error("图片必须为JPG格式!");
       }
 
-      const isLt2M = file.size / 1024 / 1024 < 2;
+      const isLt2M = file.size / 1024 / 1024 < 1;
       if (!isLt2M) {
-        message.error("图片大小应该小于2MB!");
+        message.error("图片大小应该小于1MB!");
       }
       return isPic && isLt2M ;
     }
@@ -69,7 +69,7 @@ import request from "../Fetch/request";
               <a>
                 <Icon type="close" style={{position:"absolute",
                   right:"10px",top:"5px",fontSize:"20px",
-                  color:"#fff"}}
+                  color:"#ccc"}}
                 onClick={this.deletePic}
                 />
               </a>

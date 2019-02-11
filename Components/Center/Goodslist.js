@@ -22,7 +22,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT} from "../../Translator";
       }catch(error){
         message.error(error.toString());
       }
-  
+      console.log(res.result);
       if(res && res.success && res.result){
         if(res.result.length>0){
           this.dataSource = res.result;
@@ -30,14 +30,17 @@ import {COLORS_CONVERT,METIRAILS_CONVERT} from "../../Translator";
       }
     }
 
-    delete = async (_id) => {
+    delete = async (proxy) => {
       let res;
+      let deletePicRes;
+      const urlarray = proxy.mainpicture.split(".com/");
       try{
-        res = await request("DELETE", `/api/product/${_id}`);  
+        res = await request("DELETE", `/api/product/${proxy._id}`);  
+        deletePicRes = await request("DELETE", `/api/product/deleteUploaded/${urlarray[1]}`);  
       }catch(error){
         message.error(error.toString());
       }
-      if(res && res.value && res.value._id === _id && res.ok === 1){
+      if(res && res.value && res.value._id === proxy._id && res.ok === 1 &&  deletePicRes &&  deletePicRes.success){
         message.success("删除成功");
         this.getList();
       }else{
@@ -81,7 +84,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT} from "../../Translator";
           }
         },
         {key:7, title:"操作",dataIndex:"handle",render:(ele,proxy)=>{
-          return(<a onClick={()=>this.delete(proxy._id)}><Icon type="delete"/></a>);
+          return(<a onClick={()=>this.delete(proxy)}><Icon type="delete"/></a>);
         }},
       ];
 
