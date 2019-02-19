@@ -62,7 +62,7 @@ import "../../Style/course.css";
             <a>{ele}</a>
           </Link>},
         {key:1, title:"订货单位",dataIndex:"receiver",render:(receiver)=>
-          <span>{receiver.name}</span>},
+          <span>{receiver?receiver:"无"}</span>},
         {key:2, title:"下单时间",dataIndex:"date",render:(value)=>{
           return <span>{moment(value).format("YYYY-MM-DD HH:mm:ss")}</span>;
         }},
