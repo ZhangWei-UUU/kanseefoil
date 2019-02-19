@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import { Icon,Breadcrumb,Row,Col,Divider, Form, Tag,notification,InputNumber } from "antd";
+import { Icon,Breadcrumb,Row,Col,Divider, Form, Tag,notification,Input } from "antd";
 import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 import Router from "next/router";
@@ -153,7 +153,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                     </Col>
                     <Col span={18}>
                       <h2 style={{color:"red"}}>
-                    ￥<InputNumber value={this.price} 
+                    ￥<Input value={this.price} 
                           onChange={this.changePrice}
                           style={{
                             outline:"none",
