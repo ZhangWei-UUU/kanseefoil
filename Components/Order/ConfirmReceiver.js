@@ -57,23 +57,31 @@ const {Option} = Select;
         var listData = JSON.parse(shopping_cart);
         let order = {};
         order.list = listData;
-        order.receiver = this.receiver;
-        let res;
-        try{
-          res = await request("POST", "/api/order/",order);  
-        }catch(error){
-          console.log(error.toString());
-        }
-        if(res && res.ok === 1 && res.n === 1){
-         
-          sessionStorage.removeItem("shopping-cart");
-          this.props.jumpPage(2,"success");
+        if(this.receiver){
+          order.receiver = this.receiver;
+          let res;
+          try{
+            res = await request("POST", "/api/order/",order);  
+          }catch(error){
+            console.log(error.toString());
+          }
+          if(res && res.ok === 1 && res.n === 1){
+             
+            sessionStorage.removeItem("shopping-cart");
+            this.props.jumpPage(2,"success");
+          }else{
+            notification["error"]({
+              message: "订单提交失败，请检查您的网络是否正常",
+              style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
+            });
+          }
         }else{
           notification["error"]({
-            message: "订单提交失败，请检查您的网络是否正常",
+            message: "请选择收货客户",
             style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
           });
         }
+     
       }else{
         alert("出现未知错误，没有获取到当前订单数据");
       }
