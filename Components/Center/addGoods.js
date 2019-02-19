@@ -19,7 +19,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
     @observable colors = ["red","blue","gold","white","black","copper","ray","green"];
     @observable suited = ["paper","lether","pet"];
     @observable machines = ["auto","non_auto"];
-    @observable price = "";
+    @observable price = 0;
     @observable mainpicture = null;
     
     updateImage = (param) => {
@@ -55,7 +55,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
         });
         return;
       }
-      if(this.price === "" || this.price === undefined  || this.price === null ){
+      if(this.price === 0 ){
         notification["warn"]({
           message: "请填写产品价格",
           style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
@@ -148,6 +148,8 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                       <h2 style={{color:"red"}}>
                     ￥<InputNumber value={this.price} 
                           onChange={this.changePrice}
+                          min={0}
+                          max={10000}
                           style={{
                             outline:"none",
                             border:"none",
