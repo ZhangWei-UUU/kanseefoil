@@ -19,7 +19,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
     @observable colors = ["red","blue","gold","white","black","copper","ray","green"];
     @observable suited = ["paper","lether","pet"];
     @observable machines = ["auto","non_auto"];
-    @observable price = 0;
+    @observable price = "";
     @observable mainpicture = null;
     
     updateImage = (param) => {
@@ -55,12 +55,19 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
         });
         return;
       }
-      if(this.price === 0 ){
+      if(this.price === "" || this.price === undefined  || this.price === null ){
         notification["warn"]({
           message: "请填写产品价格",
           style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
         });
         return;
+      }
+
+      if(this.price && typeof JSON.parse(toJS(this.price)) !== "number"){
+        notification["warn"]({
+          message: "价格为非法字符",
+          style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
+        });
       }
       if(this.mainpicture === "" || this.mainpicture === undefined  || this.mainpicture === null ){
         notification["warn"]({
@@ -148,8 +155,6 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                       <h2 style={{color:"red"}}>
                     ￥<InputNumber value={this.price} 
                           onChange={this.changePrice}
-                          min={0}
-                          max={10000}
                           style={{
                             outline:"none",
                             border:"none",
