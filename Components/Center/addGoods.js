@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import { Icon,Breadcrumb,Row,Col,Divider, Form, Tag,notification } from "antd";
+import { Icon,Breadcrumb,Row,Col,Divider, Form, Tag,notification,InputNumber } from "antd";
 import { observer } from "mobx-react";
 import { observable,toJS} from "mobx";
 import Router from "next/router";
@@ -47,17 +47,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
     }
 
     submit = async () => {
-      const product = {
-        name:this.name, 
-        size:toJS(this.size), 
-        colors:toJS(this.colors), 
-        suited:toJS(this.suited), 
-        machines:toJS(this.machines),
-        mainpicture:this.mainpicture,
-        price:this.price
-      };
-      let res;
-
+      
       if(this.name === "" || this.name === undefined  || this.name === null ){
         notification["warn"]({
           message: "请填写产品名称",
@@ -72,6 +62,25 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
         });
         return;
       }
+      if(this.mainpicture === "" || this.mainpicture === undefined  || this.mainpicture === null ){
+        notification["warn"]({
+          message: "请上传产品图片",
+          style:{background:"#ffeded",color:"#FF0036",border:"1px solid #FF0036"}
+        });
+        return;
+      }
+
+      const product = {
+        name:this.name, 
+        size:toJS(this.size), 
+        colors:toJS(this.colors), 
+        suited:toJS(this.suited), 
+        machines:toJS(this.machines),
+        mainpicture:this.mainpicture,
+        price:this.price
+      };
+      let res;
+
       try{
         res = await request("POST", "/api/product/",product);  
       }catch(error){
@@ -137,7 +146,7 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                     </Col>
                     <Col span={18}>
                       <h2 style={{color:"red"}}>
-                    ￥<input value={this.price} 
+                    ￥<InputNumber value={this.price} 
                           onChange={this.changePrice}
                           style={{
                             outline:"none",
@@ -202,7 +211,8 @@ import {COLORS_CONVERT,METIRAILS_CONVERT,MACHINES_CONVERT} from "../../Translato
                     })}
                   </Row>
                   <Row>
-                    <button className="goods-btn-empty" onClick={this.submit}>信息已确认，提交</button>
+                    <button className="goods-btn-empty"
+                      onClick={this.submit}>信息已确认，提交</button>
                   </Row>
                 </div>
               </Col>
